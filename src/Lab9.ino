@@ -10,8 +10,8 @@ OledWingAdafruit display;
 String mode = "init";
 uint16_t lowCal;
 uint16_t highCal;
-bool lowCalibrated;
-bool highCalibrated;
+int lowCalibrated;
+int highCalibrated;
 bool isLight;
 bool isTemp;
 uint16_t prevValue;
@@ -23,7 +23,7 @@ void setup()
   pinMode(D5, OUTPUT);
   pinMode(D6, OUTPUT);
   
-  // potentiometer and button and thermometer
+  // Switches and button and thermometer
   pinMode(D2, INPUT);
   pinMode(A5, INPUT);
   pinMode(A4, INPUT);
@@ -60,8 +60,8 @@ void setup()
 
   prevValue = sensor.getAmbient();
 
-  lowCalibrated = false;
-  highCalibrated = false;
+  int lowCalibrated = 500;
+  int highCalibrated = 1500;
   isLight = false;
   isTemp = false;
 }
@@ -93,11 +93,14 @@ void loop()
 {
   //loop
   display.loop();
+  if (digitalRead(A4)== HIGH) {//this means that we are pressing button 1 down}
+  int highCalibrated = 1500;
+Serial.println("button 1 id pressed...");
 
 
-  //check if calibrated or not
-  if ((highCalibrated == true) && (lowCalibrated == true))
-  { 
+  
+  
+  
 
     //change modes mode
     if (display.pressedA())
@@ -201,53 +204,41 @@ void loop()
 
     }
 
-    delay(100);
+   
 
-  }
-  else
-  {
+  
 
-    digitalWrite(D4, LOW);
-    digitalWrite(D5, LOW);
-    digitalWrite(D6, LOW);
+  //digitalWrite(D4, LOW);
+  //digitalWrite(D5, LOW);
+  //digitalWrite(D6, LOW);
     
     //get values
-    bool button = digitalRead(D2);
     uint16_t value = analogRead(A5); 
     Serial.println(value);
-
+  // because my potentimeter is not working I am hard coding it
+  int lightlevel = 1600;
     //set values
-    if (button == false)
+    if (lightlevel < lowCalibrated)
     {
-      if (!lowCalibrated)
-      {
-        printToDisplay("calibrating");
-        lowCal = value;
-
-        //notify of first calibration
-        String output = "First light level set to\n";
-        output += (String) lowCal;
-        printToDisplay(output);  
-        lowCalibrated = true;
-        delay(2000);
-      }
-      else if (!highCalibrated)
-      {
-        printToDisplay("calibrating");
-        highCal = value;
-
-        //notify of first calibration
-        String output = "Second light level set to\n";
-        output += (String) highCal;
-        printToDisplay(output);  
-        highCalibrated = true;
-        delay(2000);
-      }
-      delay(2000);
+      digitalWrite(D5, HIGH);
+      digitalWrite(D4, LOW);
+      digitalWrite(D6, LOW);
     }
-    String output = "Potentiometer value:\n";  
-    output += (String) value;
-    printToDisplay(output);
-    delay(1000);
+    
+    else if (lightlevel > highCalibrated)
+    {
+  digitalWrite(D4, HIGH);
+  digitalWrite(D5, LOW);
+  digitalWrite(D6, LOW);
+    }
+    else if (lightlevel > lowCalibrated && lightlevel < highCalibrated)
+    {
+    digitalWrite(D4, LOW);
+    digitalWrite(D5, LOW);
+    digitalWrite(D6, HIGH);
+    }
   }
+
+     
+    
 }
