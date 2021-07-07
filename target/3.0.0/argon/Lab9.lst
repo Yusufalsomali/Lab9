@@ -7,37 +7,37 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
   1 .dynalib      00000004  000d4018  000d4018  00004018  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  2 .text         00006800  000d4020  000d4020  00004020  2**3
+  2 .text         000067d0  000d4020  000d4020  00004020  2**3
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  3 .ARM.exidx    00000008  000da820  000da820  0000a820  2**2
+  3 .ARM.exidx    00000008  000da7f0  000da7f0  0000a7f0  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  4 .backup       00000004  2003f400  000da828  0000f400  2**2
+  4 .backup       00000004  2003f400  000da7f8  0000f400  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  5 .data         00000068  2003e4e8  000da82c  0001e4e8  2**2
+  5 .data         00000068  2003e4f8  000da7fc  0001e4f8  2**2
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .bss          000002a0  2003e550  2003e550  0002e550  2**2
+  6 .bss          00000290  2003e560  2003e560  0002e560  2**2
                   ALLOC
-  7 .module_info_suffix 00000028  000da894  000da894  0002a894  2**0
+  7 .module_info_suffix 00000028  000da864  000da864  0002a864  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  8 .module_info_crc 00000004  000da8bc  000da8bc  0002a8bc  2**0
+  8 .module_info_crc 00000004  000da88c  000da88c  0002a88c  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  9 .debug_info   002404e9  00000000  00000000  0002a8c0  2**0
+  9 .debug_info   0024037b  00000000  00000000  0002a890  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_abbrev 00020dbc  00000000  00000000  0026ada9  2**0
+ 10 .debug_abbrev 00020d9f  00000000  00000000  0026ac0b  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    000472c5  00000000  00000000  0028bb65  2**0
+ 11 .debug_loc    00047321  00000000  00000000  0028b9aa  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_aranges 000036b8  00000000  00000000  002d2e2a  2**0
+ 12 .debug_aranges 000036b8  00000000  00000000  002d2ccb  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_ranges 0000ae70  00000000  00000000  002d64e2  2**0
+ 13 .debug_ranges 0000adf0  00000000  00000000  002d6383  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_macro  00045d3e  00000000  00000000  002e1352  2**0
+ 14 .debug_macro  00045d3e  00000000  00000000  002e1173  2**0
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_line   000571e6  00000000  00000000  00327090  2**0
+ 15 .debug_line   000571a3  00000000  00000000  00326eb1  2**0
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_str    0013150d  00000000  00000000  0037e276  2**0
+ 16 .debug_str    001314fe  00000000  00000000  0037e054  2**0
                   CONTENTS, READONLY, DEBUGGING
- 17 .debug_frame  0000a2e4  00000000  00000000  004af784  2**2
+ 17 .debug_frame  0000a310  00000000  00000000  004af554  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -76,10 +76,10 @@ void* module_user_pre_init() {
    d4042:	4801      	ldr	r0, [pc, #4]	; (d4048 <module_user_pre_init+0x28>)
    d4044:	bd08      	pop	{r3, pc}
    d4046:	bf00      	nop
-   d4048:	2003e4e8 	.word	0x2003e4e8
-   d404c:	000da82c 	.word	0x000da82c
-   d4050:	2003e550 	.word	0x2003e550
-   d4054:	2003e550 	.word	0x2003e550
+   d4048:	2003e4f8 	.word	0x2003e4f8
+   d404c:	000da7fc 	.word	0x000da7fc
+   d4050:	2003e560 	.word	0x2003e560
+   d4054:	2003e560 	.word	0x2003e560
    d4058:	2003e7f0 	.word	0x2003e7f0
 
 000d405c <module_user_init>:
@@ -116,8 +116,8 @@ void module_user_init()
     for (ctor_num=0; ctor_num < link_constructors_size/sizeof(constructor_ptr_t); ctor_num++ )
    d4078:	3501      	adds	r5, #1
    d407a:	e7f7      	b.n	d406c <module_user_init+0x10>
-   d407c:	000da7f8 	.word	0x000da7f8
-   d4080:	000da81c 	.word	0x000da81c
+   d407c:	000da7c0 	.word	0x000da7c0
+   d4080:	000da7e4 	.word	0x000da7e4
 
 000d4084 <module_user_setup>:
 
@@ -134,7 +134,7 @@ void module_user_setup() {
 void module_user_loop() {
    d4088:	b508      	push	{r3, lr}
     loop();
-   d408a:	f000 ff85 	bl	d4f98 <loop>
+   d408a:	f000 fe09 	bl	d4ca0 <loop>
     _post_loop();
 }
    d408e:	e8bd 4008 	ldmia.w	sp!, {r3, lr}
@@ -288,7 +288,7 @@ public:
    d4122:	4798      	blx	r3
    d4124:	4628      	mov	r0, r5
    d4126:	bd38      	pop	{r3, r4, r5, pc}
-   d4128:	000da544 	.word	0x000da544
+   d4128:	000da50c 	.word	0x000da50c
 
 000d412c <_ZN10CloudClass7processEv>:
     static bool disconnected(void) { return !connected(); }
@@ -436,9 +436,9 @@ void printToDisplay(String output)
   void setTextColor(uint16_t c) { textcolor = textbgcolor = c; }
    d41d4:	f04f 1301 	mov.w	r3, #65537	; 0x10001
   display.setTextColor(WHITE);
-  display.setCursor(0,0);
+  display.setCursor(0, 0);
 
-      //output to display
+  //output to display
   display.println(output);
    d41d8:	6829      	ldr	r1, [r5, #0]
    d41da:	2200      	movs	r2, #0
@@ -451,12 +451,12 @@ void printToDisplay(String output)
    d41e8:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
   display.display();
    d41ec:	f002 b98a 	b.w	d6504 <_ZN16Adafruit_SSD13067displayEv>
-   d41f0:	2003e5b0 	.word	0x2003e5b0
+   d41f0:	2003e5c0 	.word	0x2003e5c0
 
 000d41f4 <BlynkWidgetWrite1>:
 
 BLYNK_WRITE(V1)
-{   
+{
    d41f4:	b508      	push	{r3, lr}
     int         asInt() const       { return atoi(buff); }
    d41f6:	6808      	ldr	r0, [r1, #0]
@@ -475,7 +475,6 @@ BLYNK_WRITE(V1)
    d420e:	2101      	movs	r1, #1
    d4210:	f003 ff8d 	bl	d812e <digitalWrite>
   delay(2000);
-  
 }
    d4214:	e8bd 4008 	ldmia.w	sp!, {r3, lr}
   delay(2000);
@@ -1448,7 +1447,7 @@ class IPAddress : public Printable {
    d48ca:	2500      	movs	r5, #0
    d48cc:	e777      	b.n	d47be <_ZN13BlynkProtocolI22BlynkTransportParticleE3runEb+0x5a>
    d48ce:	bf00      	nop
-   d48d0:	000da474 	.word	0x000da474
+   d48d0:	000da43c 	.word	0x000da43c
 
 000d48d4 <_ZN13BlynkParticle5beginEPKc9IPAddresst>:
         BlynkDelay(3000); // Give the board time to settle
@@ -1588,7 +1587,7 @@ class IPAddress : public Printable {
    d49b4:	4628      	mov	r0, r5
    d49b6:	f000 ff66 	bl	d5886 <_ZN12Adafruit_GFX11setTextSizeEh>
    d49ba:	2400      	movs	r4, #0
-  display.println("Turn the potentiometer to calibrate the ambient light values!");
+  display.println("press the button to calibrate the ambient light values!");
    d49bc:	4924      	ldr	r1, [pc, #144]	; (d4a50 <setup+0xe8>)
    d49be:	f04f 1301 	mov.w	r3, #65537	; 0x10001
    d49c2:	4628      	mov	r0, r5
@@ -1607,7 +1606,7 @@ class IPAddress : public Printable {
    d49e0:	f002 fe5e 	bl	d76a0 <_Z16_fetch_usbserialv>
    d49e4:	491c      	ldr	r1, [pc, #112]	; (d4a58 <setup+0xf0>)
    d49e6:	f002 fc28 	bl	d723a <_ZN5Print7printlnEPKc>
-    while (1); //Freeze!
+    while (1)
    d49ea:	e7fe      	b.n	d49ea <setup+0x82>
   sensor.powerOffProximity();
    d49ec:	4819      	ldr	r0, [pc, #100]	; (d4a54 <setup+0xec>)
@@ -1627,7 +1626,7 @@ class IPAddress : public Printable {
    d4a08:	4621      	mov	r1, r4
    d4a0a:	2006      	movs	r0, #6
    d4a0c:	f003 fb8f 	bl	d812e <digitalWrite>
-  Blynk.begin("cnjXDn_t7vcs3I-PR-jbSobGd__j2qM9", IPAddress(167, 172, 234, 162), 9090);
+  Blynk.begin("8dR0nIj6wlYtZkAeDn-4K0jVWOyCN_cM", IPAddress(167, 172, 234, 162), 9090);
    d4a10:	23a2      	movs	r3, #162	; 0xa2
    d4a12:	9300      	str	r3, [sp, #0]
    d4a14:	22ac      	movs	r2, #172	; 0xac
@@ -1658,15 +1657,15 @@ class IPAddress : public Printable {
 }
    d4a48:	b009      	add	sp, #36	; 0x24
    d4a4a:	bd30      	pop	{r4, r5, pc}
-   d4a4c:	2003e5b0 	.word	0x2003e5b0
+   d4a4c:	2003e5c0 	.word	0x2003e5c0
    d4a50:	000d9308 	.word	0x000d9308
    d4a54:	2003e640 	.word	0x2003e640
-   d4a58:	000d9346 	.word	0x000d9346
-   d4a5c:	000d936d 	.word	0x000d936d
-   d4a60:	2003e554 	.word	0x2003e554
+   d4a58:	000d9340 	.word	0x000d9340
+   d4a5c:	000d9367 	.word	0x000d9367
+   d4a60:	2003e564 	.word	0x2003e564
    d4a64:	2003e63c 	.word	0x2003e63c
-   d4a68:	2003e622 	.word	0x2003e622
-   d4a6c:	2003e623 	.word	0x2003e623
+   d4a68:	2003e634 	.word	0x2003e634
+   d4a6c:	2003e635 	.word	0x2003e635
 
 000d4a70 <_ZN13BlynkProtocolI22BlynkTransportParticleE7sendCmdEhtPKvjS3_j>:
 #ifndef BLYNK_SEND_CHUNK
@@ -1893,7 +1892,7 @@ void BlynkApi<Proto>::sendInfo()
    d4be4:	b015      	add	sp, #84	; 0x54
    d4be6:	f85d fb04 	ldr.w	pc, [sp], #4
    d4bea:	bf00      	nop
-   d4bec:	000d9480 	.word	0x000d9480
+   d4bec:	000d9448 	.word	0x000d9448
 
 000d4bf0 <_ZN8BlynkApiI13BlynkProtocolI22BlynkTransportParticleEE6notifyIA38_cEEvRKT_>:
     }
@@ -1934,550 +1933,544 @@ void BlynkApi<Proto>::sendInfo()
    d4c22:	f20d 4d24 	addw	sp, sp, #1060	; 0x424
    d4c26:	bd30      	pop	{r4, r5, pc}
 
-000d4c28 <loop.part.0>:
-
-void loop()
-   d4c28:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
-   d4c2c:	f5ad 6d86 	sub.w	sp, sp, #1072	; 0x430
-{
-  //loop
-  display.loop();
-  if (digitalRead(A4)== HIGH) {//this means that we are pressing button 1 down}
-  int highCalibrated = 1500;
-Serial.println("button 1 id pressed...");
-   d4c30:	f002 fd36 	bl	d76a0 <_Z16_fetch_usbserialv>
-   d4c34:	49be      	ldr	r1, [pc, #760]	; (d4f30 <loop.part.0+0x308>)
-   d4c36:	4dbf      	ldr	r5, [pc, #764]	; (d4f34 <loop.part.0+0x30c>)
-   d4c38:	f8df 8350 	ldr.w	r8, [pc, #848]	; d4f8c <loop.part.0+0x364>
-   d4c3c:	f002 fafd 	bl	d723a <_ZN5Print7printlnEPKc>
-  
-  
-  
-
-    //change modes mode
-    if (display.pressedA())
-   d4c40:	48bd      	ldr	r0, [pc, #756]	; (d4f38 <loop.part.0+0x310>)
-   d4c42:	f000 feb1 	bl	d59a8 <_ZN16OledWingAdafruit8pressedAEv>
-   d4c46:	b120      	cbz	r0, d4c52 <loop.part.0+0x2a>
-    {
-      isLight = true;
-   d4c48:	2301      	movs	r3, #1
-   d4c4a:	702b      	strb	r3, [r5, #0]
-      isTemp = false;
-   d4c4c:	2300      	movs	r3, #0
-   d4c4e:	f888 3000 	strb.w	r3, [r8]
-      //Blynk.virtualWrite(V1, 0);
-    }
-    if (display.pressedB())
-   d4c52:	48b9      	ldr	r0, [pc, #740]	; (d4f38 <loop.part.0+0x310>)
-   d4c54:	f000 feb2 	bl	d59bc <_ZN16OledWingAdafruit8pressedBEv>
-   d4c58:	4604      	mov	r4, r0
-   d4c5a:	2800      	cmp	r0, #0
-   d4c5c:	f000 8098 	beq.w	d4d90 <loop.part.0+0x168>
-    {
-      isLight = false;
-   d4c60:	2300      	movs	r3, #0
-   d4c62:	702b      	strb	r3, [r5, #0]
-      isTemp = true;
-   d4c64:	2301      	movs	r3, #1
-   d4c66:	f888 3000 	strb.w	r3, [r8]
-    }
-
-    //print proximity value when button A pressed
-    if (isTemp)
-    {
-      digitalWrite(D4, LOW);
-   d4c6a:	2100      	movs	r1, #0
-   d4c6c:	2004      	movs	r0, #4
-   d4c6e:	f003 fa5e 	bl	d812e <digitalWrite>
-      digitalWrite(D5, LOW);
-   d4c72:	2100      	movs	r1, #0
-   d4c74:	2005      	movs	r0, #5
-   d4c76:	f003 fa5a 	bl	d812e <digitalWrite>
-      digitalWrite(D6, LOW);
-   d4c7a:	2100      	movs	r1, #0
-   d4c7c:	2006      	movs	r0, #6
-   d4c7e:	f003 fa56 	bl	d812e <digitalWrite>
-
-      uint16_t reading = analogRead(A4);
-   d4c82:	200f      	movs	r0, #15
-   d4c84:	f003 fa7f 	bl	d8186 <analogRead>
-      double voltage = (reading * 3.3) / 4095.0;
-   d4c88:	b280      	uxth	r0, r0
-   d4c8a:	f003 fd67 	bl	d875c <__aeabi_i2d>
-   d4c8e:	a3a4      	add	r3, pc, #656	; (adr r3, d4f20 <loop.part.0+0x2f8>)
-   d4c90:	e9d3 2300 	ldrd	r2, r3, [r3]
-   d4c94:	f003 fdcc 	bl	d8830 <__aeabi_dmul>
-   d4c98:	a3a3      	add	r3, pc, #652	; (adr r3, d4f28 <loop.part.0+0x300>)
-   d4c9a:	e9d3 2300 	ldrd	r2, r3, [r3]
-   d4c9e:	f003 fef1 	bl	d8a84 <__aeabi_ddiv>
-      double temperature = (voltage - 0.5) * 100;
-   d4ca2:	4ba6      	ldr	r3, [pc, #664]	; (d4f3c <loop.part.0+0x314>)
-   d4ca4:	2200      	movs	r2, #0
-   d4ca6:	f003 fc0b 	bl	d84c0 <__aeabi_dsub>
-   d4caa:	4ba5      	ldr	r3, [pc, #660]	; (d4f40 <loop.part.0+0x318>)
-   d4cac:	2200      	movs	r2, #0
-   d4cae:	f003 fdbf 	bl	d8830 <__aeabi_dmul>
-   d4cb2:	4606      	mov	r6, r0
-   d4cb4:	460f      	mov	r7, r1
-      String output = "";
-   d4cb6:	a808      	add	r0, sp, #32
-   d4cb8:	49a2      	ldr	r1, [pc, #648]	; (d4f44 <loop.part.0+0x31c>)
-        
-      //set up output string with celsius and fahrenheit
-      output += "Celsius: ";
-      output += (String) temperature;
-   d4cba:	ac0c      	add	r4, sp, #48	; 0x30
-      String output = "";
-   d4cbc:	f002 f9c9 	bl	d7052 <_ZN6StringC1EPKc>
-	unsigned char concat(double num);
-
-	// if there's not enough memory for the concatenated value, the string
-	// will be left unchanged (but this isn't signalled in any way)
-	String & operator += (const String &rhs)	{concat(rhs); return (*this);}
-	String & operator += (const char *cstr)		{concat(cstr); return (*this);}
-   d4cc0:	49a1      	ldr	r1, [pc, #644]	; (d4f48 <loop.part.0+0x320>)
-   d4cc2:	a808      	add	r0, sp, #32
-   d4cc4:	f002 fa47 	bl	d7156 <_ZN6String6concatEPKc>
-      output += (String) temperature;
-   d4cc8:	ec47 6b10 	vmov	d0, r6, r7
-   d4ccc:	2106      	movs	r1, #6
-   d4cce:	4620      	mov	r0, r4
-   d4cd0:	f002 fa12 	bl	d70f8 <_ZN6StringC1Edi>
-	String & operator += (const String &rhs)	{concat(rhs); return (*this);}
-   d4cd4:	4621      	mov	r1, r4
-   d4cd6:	a808      	add	r0, sp, #32
-   d4cd8:	f002 fa39 	bl	d714e <_ZN6String6concatERKS_>
-   d4cdc:	4620      	mov	r0, r4
-   d4cde:	f002 f96d 	bl	d6fbc <_ZN6StringD1Ev>
-	String & operator += (const char *cstr)		{concat(cstr); return (*this);}
-   d4ce2:	499a      	ldr	r1, [pc, #616]	; (d4f4c <loop.part.0+0x324>)
-   d4ce4:	a808      	add	r0, sp, #32
-   d4ce6:	f002 fa36 	bl	d7156 <_ZN6String6concatEPKc>
-   d4cea:	4999      	ldr	r1, [pc, #612]	; (d4f50 <loop.part.0+0x328>)
-   d4cec:	a808      	add	r0, sp, #32
-   d4cee:	f002 fa32 	bl	d7156 <_ZN6String6concatEPKc>
-      output += "\n";
-      output += "Fahrenheit: ";
-      output += (String) ((temperature*9/5)+32);
-   d4cf2:	4b98      	ldr	r3, [pc, #608]	; (d4f54 <loop.part.0+0x32c>)
-   d4cf4:	2200      	movs	r2, #0
-   d4cf6:	4630      	mov	r0, r6
-   d4cf8:	4639      	mov	r1, r7
-   d4cfa:	f003 fd99 	bl	d8830 <__aeabi_dmul>
-   d4cfe:	4b96      	ldr	r3, [pc, #600]	; (d4f58 <loop.part.0+0x330>)
-   d4d00:	2200      	movs	r2, #0
-   d4d02:	f003 febf 	bl	d8a84 <__aeabi_ddiv>
-   d4d06:	2200      	movs	r2, #0
-   d4d08:	4b94      	ldr	r3, [pc, #592]	; (d4f5c <loop.part.0+0x334>)
-   d4d0a:	f003 fbdb 	bl	d84c4 <__adddf3>
-   d4d0e:	ec41 0b10 	vmov	d0, r0, r1
-   d4d12:	2106      	movs	r1, #6
-   d4d14:	4620      	mov	r0, r4
-   d4d16:	f002 f9ef 	bl	d70f8 <_ZN6StringC1Edi>
-	String & operator += (const String &rhs)	{concat(rhs); return (*this);}
-   d4d1a:	4621      	mov	r1, r4
-   d4d1c:	a808      	add	r0, sp, #32
-   d4d1e:	f002 fa16 	bl	d714e <_ZN6String6concatERKS_>
-   d4d22:	4620      	mov	r0, r4
-   d4d24:	f002 f94a 	bl	d6fbc <_ZN6StringD1Ev>
-
-      //print to display
-      printToDisplay(output);
-   d4d28:	a908      	add	r1, sp, #32
-   d4d2a:	4620      	mov	r0, r4
-   d4d2c:	f002 f9b4 	bl	d7098 <_ZN6StringC1ERKS_>
-   d4d30:	4620      	mov	r0, r4
-   d4d32:	f7ff fa45 	bl	d41c0 <_Z14printToDisplay6String>
-   d4d36:	4620      	mov	r0, r4
-   d4d38:	f002 f940 	bl	d6fbc <_ZN6StringD1Ev>
+000d4c28 <_ZN8BlynkApiI13BlynkProtocolI22BlynkTransportParticleEE12virtualWriteIJdEEEviDpT_>:
+    void virtualWrite(int pin, Args... values) {
+   d4c28:	b570      	push	{r4, r5, r6, lr}
+   d4c2a:	ed2d 8b02 	vpush	{d8}
+   d4c2e:	eeb0 8a40 	vmov.f32	s16, s0
+   d4c32:	eef0 8a60 	vmov.f32	s17, s1
+   d4c36:	f5ad 6d84 	sub.w	sp, sp, #1056	; 0x420
         : buff((char*)addr), len(length), buff_size(buffsize)
-   d4d3c:	f44f 6380 	mov.w	r3, #1024	; 0x400
-   d4d40:	9405      	str	r4, [sp, #20]
-   d4d42:	a805      	add	r0, sp, #20
-   d4d44:	2400      	movs	r4, #0
-   d4d46:	4986      	ldr	r1, [pc, #536]	; (d4f60 <loop.part.0+0x338>)
-   d4d48:	e9cd 4306 	strd	r4, r3, [sp, #24]
+   d4c3a:	ab08      	add	r3, sp, #32
+   d4c3c:	2400      	movs	r4, #0
+   d4c3e:	4605      	mov	r5, r0
+   d4c40:	460e      	mov	r6, r1
+   d4c42:	9305      	str	r3, [sp, #20]
+   d4c44:	a805      	add	r0, sp, #20
+   d4c46:	f44f 6380 	mov.w	r3, #1024	; 0x400
+   d4c4a:	4913      	ldr	r1, [pc, #76]	; (d4c98 <_ZN8BlynkApiI13BlynkProtocolI22BlynkTransportParticleEE12virtualWriteIJdEEEviDpT_+0x70>)
+   d4c4c:	e9cd 4306 	strd	r4, r3, [sp, #24]
     if (str == NULL) {
-   d4d4c:	f7ff f9bc 	bl	d40c8 <_ZN10BlynkParam3addEPKc.part.0>
+   d4c50:	f7ff fa3a 	bl	d40c8 <_ZN10BlynkParam3addEPKc.part.0>
         cmd.add(pin);
-   d4d50:	4621      	mov	r1, r4
-   d4d52:	a805      	add	r0, sp, #20
-   d4d54:	f7ff fa10 	bl	d4178 <_ZN10BlynkParam3addEi>
+   d4c54:	4631      	mov	r1, r6
+   d4c56:	a805      	add	r0, sp, #20
+   d4c58:	f7ff fa8e 	bl	d4178 <_ZN10BlynkParam3addEi>
     }
 
     inline
     void BlynkParam::add(double value)
     {
         len += snprintf(buff+len, buff_size-len, "%2.7f", value)+1;
-   d4d58:	e9dd 3106 	ldrd	r3, r1, [sp, #24]
-   d4d5c:	9805      	ldr	r0, [sp, #20]
-   d4d5e:	4a81      	ldr	r2, [pc, #516]	; (d4f64 <loop.part.0+0x33c>)
-   d4d60:	1ac9      	subs	r1, r1, r3
-   d4d62:	e9cd 6700 	strd	r6, r7, [sp]
-   d4d66:	4418      	add	r0, r3
-   d4d68:	f001 ff2e 	bl	d6bc8 <snprintf>
-   d4d6c:	9b06      	ldr	r3, [sp, #24]
-   d4d6e:	3001      	adds	r0, #1
-   d4d70:	4418      	add	r0, r3
-   d4d72:	9006      	str	r0, [sp, #24]
+   d4c5c:	e9dd 3106 	ldrd	r3, r1, [sp, #24]
+   d4c60:	9805      	ldr	r0, [sp, #20]
+   d4c62:	4a0e      	ldr	r2, [pc, #56]	; (d4c9c <_ZN8BlynkApiI13BlynkProtocolI22BlynkTransportParticleEE12virtualWriteIJdEEEviDpT_+0x74>)
+   d4c64:	1ac9      	subs	r1, r1, r3
+   d4c66:	ed8d 8b00 	vstr	d8, [sp]
+   d4c6a:	4418      	add	r0, r3
+   d4c6c:	f001 ffac 	bl	d6bc8 <snprintf>
+   d4c70:	1c43      	adds	r3, r0, #1
+   d4c72:	9806      	ldr	r0, [sp, #24]
+   d4c74:	4403      	add	r3, r0
+   d4c76:	9306      	str	r3, [sp, #24]
         static_cast<Proto*>(this)->sendCmd(BLYNK_CMD_HARDWARE, 0, cmd.getBuffer(), cmd.getLength()-1);
-   d4d74:	3801      	subs	r0, #1
-   d4d76:	9000      	str	r0, [sp, #0]
-   d4d78:	e9cd 4401 	strd	r4, r4, [sp, #4]
-   d4d7c:	9b05      	ldr	r3, [sp, #20]
-   d4d7e:	487a      	ldr	r0, [pc, #488]	; (d4f68 <loop.part.0+0x340>)
-   d4d80:	4622      	mov	r2, r4
-   d4d82:	2114      	movs	r1, #20
-   d4d84:	f7ff fe74 	bl	d4a70 <_ZN13BlynkProtocolI22BlynkTransportParticleE7sendCmdEhtPKvjS3_j>
-      String output = "";
-   d4d88:	a808      	add	r0, sp, #32
-   d4d8a:	f002 f917 	bl	d6fbc <_ZN6StringD1Ev>
-   d4d8e:	e051      	b.n	d4e34 <loop.part.0+0x20c>
-    if (isLight)
-   d4d90:	782b      	ldrb	r3, [r5, #0]
-   d4d92:	2b00      	cmp	r3, #0
-   d4d94:	d049      	beq.n	d4e2a <loop.part.0+0x202>
-      sensor.powerOnAmbient();
-   d4d96:	4875      	ldr	r0, [pc, #468]	; (d4f6c <loop.part.0+0x344>)
-      if (ambiValue < lowCal)
-   d4d98:	f8df a1f4 	ldr.w	sl, [pc, #500]	; d4f90 <loop.part.0+0x368>
-   d4d9c:	4f74      	ldr	r7, [pc, #464]	; (d4f70 <loop.part.0+0x348>)
-      sensor.powerOnAmbient();
-   d4d9e:	f000 ff2a 	bl	d5bf6 <_ZN8VCNL404014powerOnAmbientEv>
-      uint16_t ambiValue = sensor.getAmbient();
-   d4da2:	4872      	ldr	r0, [pc, #456]	; (d4f6c <loop.part.0+0x344>)
-   d4da4:	f000 feab 	bl	d5afe <_ZN8VCNL404010getAmbientEv>
-      String output = ""; 
-   d4da8:	4966      	ldr	r1, [pc, #408]	; (d4f44 <loop.part.0+0x31c>)
-      uint16_t ambiValue = sensor.getAmbient();
-   d4daa:	4606      	mov	r6, r0
-      String output = ""; 
-   d4dac:	a808      	add	r0, sp, #32
-   d4dae:	f002 f950 	bl	d7052 <_ZN6StringC1EPKc>
-      if (ambiValue < lowCal)
-   d4db2:	f8ba 3000 	ldrh.w	r3, [sl]
-   d4db6:	42b3      	cmp	r3, r6
-   d4db8:	ad0c      	add	r5, sp, #48	; 0x30
-   d4dba:	d95f      	bls.n	d4e7c <loop.part.0+0x254>
-        digitalWrite(D4, HIGH);
-   d4dbc:	2101      	movs	r1, #1
-   d4dbe:	2004      	movs	r0, #4
-   d4dc0:	f003 f9b5 	bl	d812e <digitalWrite>
-        digitalWrite(D5, LOW);
-   d4dc4:	4621      	mov	r1, r4
-   d4dc6:	2005      	movs	r0, #5
-   d4dc8:	f003 f9b1 	bl	d812e <digitalWrite>
-        digitalWrite(D6, LOW);
-   d4dcc:	4621      	mov	r1, r4
-   d4dce:	2006      	movs	r0, #6
-   d4dd0:	f003 f9ad 	bl	d812e <digitalWrite>
-        if (!(prevValue < lowCal))
-   d4dd4:	883a      	ldrh	r2, [r7, #0]
-   d4dd6:	f8ba 3000 	ldrh.w	r3, [sl]
-   d4dda:	429a      	cmp	r2, r3
-   d4ddc:	d307      	bcc.n	d4dee <loop.part.0+0x1c6>
-          Blynk.notify("Light value dipped below lower bound!");
-   d4dde:	4965      	ldr	r1, [pc, #404]	; (d4f74 <loop.part.0+0x34c>)
-   d4de0:	4861      	ldr	r0, [pc, #388]	; (d4f68 <loop.part.0+0x340>)
-   d4de2:	f7ff ff05 	bl	d4bf0 <_ZN8BlynkApiI13BlynkProtocolI22BlynkTransportParticleEE6notifyIA38_cEEvRKT_>
-	String & operator += (const char *cstr)		{concat(cstr); return (*this);}
-   d4de6:	4964      	ldr	r1, [pc, #400]	; (d4f78 <loop.part.0+0x350>)
-   d4de8:	a808      	add	r0, sp, #32
-   d4dea:	f002 f9b4 	bl	d7156 <_ZN6String6concatEPKc>
-   d4dee:	4963      	ldr	r1, [pc, #396]	; (d4f7c <loop.part.0+0x354>)
-   d4df0:	a808      	add	r0, sp, #32
-   d4df2:	f002 f9b0 	bl	d7156 <_ZN6String6concatEPKc>
-      output += (String) ambiValue;
-   d4df6:	220a      	movs	r2, #10
-   d4df8:	4631      	mov	r1, r6
-   d4dfa:	4628      	mov	r0, r5
-   d4dfc:	f002 f969 	bl	d70d2 <_ZN6StringC1Eih>
+   d4c78:	3b01      	subs	r3, #1
+   d4c7a:	9300      	str	r3, [sp, #0]
+   d4c7c:	e9cd 4401 	strd	r4, r4, [sp, #4]
+   d4c80:	9b05      	ldr	r3, [sp, #20]
+   d4c82:	4622      	mov	r2, r4
+   d4c84:	2114      	movs	r1, #20
+   d4c86:	4628      	mov	r0, r5
+   d4c88:	f7ff fef2 	bl	d4a70 <_ZN13BlynkProtocolI22BlynkTransportParticleE7sendCmdEhtPKvjS3_j>
+    }
+   d4c8c:	f50d 6d84 	add.w	sp, sp, #1056	; 0x420
+   d4c90:	ecbd 8b02 	vpop	{d8}
+   d4c94:	bd70      	pop	{r4, r5, r6, pc}
+   d4c96:	bf00      	nop
+   d4c98:	000d9388 	.word	0x000d9388
+   d4c9c:	000d938b 	.word	0x000d938b
+
+000d4ca0 <loop>:
+
+void loop()
+{
+   d4ca0:	e92d 41f0 	stmdb	sp!, {r4, r5, r6, r7, r8, lr}
+   d4ca4:	ed2d 8b04 	vpush	{d8-d9}
+  //loop
+  display.loop();
+   d4ca8:	48b5      	ldr	r0, [pc, #724]	; (d4f80 <loop+0x2e0>)
+   d4caa:	4cb6      	ldr	r4, [pc, #728]	; (d4f84 <loop+0x2e4>)
+   d4cac:	f8df 8324 	ldr.w	r8, [pc, #804]	; d4fd4 <loop+0x334>
+{
+   d4cb0:	f5ad 6d86 	sub.w	sp, sp, #1072	; 0x430
+  display.loop();
+   d4cb4:	f000 fe5f 	bl	d5976 <_ZN16OledWingAdafruit4loopEv>
+
+  //change modes mode
+  if (display.pressedA())
+   d4cb8:	48b1      	ldr	r0, [pc, #708]	; (d4f80 <loop+0x2e0>)
+   d4cba:	f000 fe75 	bl	d59a8 <_ZN16OledWingAdafruit8pressedAEv>
+   d4cbe:	b140      	cbz	r0, d4cd2 <loop+0x32>
+  {
+    display.println("A has been pressesd");
+   d4cc0:	49b1      	ldr	r1, [pc, #708]	; (d4f88 <loop+0x2e8>)
+   d4cc2:	48af      	ldr	r0, [pc, #700]	; (d4f80 <loop+0x2e0>)
+   d4cc4:	f002 fab9 	bl	d723a <_ZN5Print7printlnEPKc>
+    isLight = true;
+   d4cc8:	2301      	movs	r3, #1
+   d4cca:	7023      	strb	r3, [r4, #0]
+    isTemp = false;
+   d4ccc:	2300      	movs	r3, #0
+   d4cce:	f888 3000 	strb.w	r3, [r8]
+    //Blynk.virtualWrite(V1, 0);
+  }
+  if (display.pressedB())
+   d4cd2:	48ab      	ldr	r0, [pc, #684]	; (d4f80 <loop+0x2e0>)
+   d4cd4:	4fad      	ldr	r7, [pc, #692]	; (d4f8c <loop+0x2ec>)
+   d4cd6:	f000 fe71 	bl	d59bc <_ZN16OledWingAdafruit8pressedBEv>
+   d4cda:	4606      	mov	r6, r0
+   d4cdc:	2800      	cmp	r0, #0
+   d4cde:	f000 8087 	beq.w	d4df0 <loop+0x150>
+  {
+    isLight = false;
+   d4ce2:	2300      	movs	r3, #0
+   d4ce4:	7023      	strb	r3, [r4, #0]
+    isTemp = true;
+   d4ce6:	2301      	movs	r3, #1
+   d4ce8:	f888 3000 	strb.w	r3, [r8]
+  }
+
+  //print proximity value when button A pressed
+  if (isTemp)
+  {
+    digitalWrite(D4, LOW);
+   d4cec:	2100      	movs	r1, #0
+   d4cee:	2004      	movs	r0, #4
+   d4cf0:	f003 fa1d 	bl	d812e <digitalWrite>
+    digitalWrite(D5, LOW);
+   d4cf4:	2100      	movs	r1, #0
+   d4cf6:	2005      	movs	r0, #5
+   d4cf8:	f003 fa19 	bl	d812e <digitalWrite>
+    digitalWrite(D6, LOW);
+   d4cfc:	2100      	movs	r1, #0
+   d4cfe:	2006      	movs	r0, #6
+   d4d00:	f003 fa15 	bl	d812e <digitalWrite>
+
+    uint16_t reading = analogRead(A4);
+   d4d04:	200f      	movs	r0, #15
+   d4d06:	f003 fa3e 	bl	d8186 <analogRead>
+    double voltage = (reading * 3.3) / 4095.0;
+   d4d0a:	b280      	uxth	r0, r0
+   d4d0c:	f003 fd26 	bl	d875c <__aeabi_i2d>
+   d4d10:	a397      	add	r3, pc, #604	; (adr r3, d4f70 <loop+0x2d0>)
+   d4d12:	e9d3 2300 	ldrd	r2, r3, [r3]
+   d4d16:	f003 fd8b 	bl	d8830 <__aeabi_dmul>
+   d4d1a:	a397      	add	r3, pc, #604	; (adr r3, d4f78 <loop+0x2d8>)
+   d4d1c:	e9d3 2300 	ldrd	r2, r3, [r3]
+   d4d20:	f003 feb0 	bl	d8a84 <__aeabi_ddiv>
+    double temperature = (voltage - 0.5) * 100;
+   d4d24:	4b9a      	ldr	r3, [pc, #616]	; (d4f90 <loop+0x2f0>)
+   d4d26:	2200      	movs	r2, #0
+   d4d28:	f003 fbca 	bl	d84c0 <__aeabi_dsub>
+   d4d2c:	4b99      	ldr	r3, [pc, #612]	; (d4f94 <loop+0x2f4>)
+   d4d2e:	2200      	movs	r2, #0
+   d4d30:	f003 fd7e 	bl	d8830 <__aeabi_dmul>
+   d4d34:	ec41 0b18 	vmov	d8, r0, r1
+    String output = "";
+   d4d38:	4997      	ldr	r1, [pc, #604]	; (d4f98 <loop+0x2f8>)
+   d4d3a:	a808      	add	r0, sp, #32
+   d4d3c:	f002 f989 	bl	d7052 <_ZN6StringC1EPKc>
+	unsigned char concat(double num);
+
+	// if there's not enough memory for the concatenated value, the string
+	// will be left unchanged (but this isn't signalled in any way)
 	String & operator += (const String &rhs)	{concat(rhs); return (*this);}
-   d4e00:	4629      	mov	r1, r5
-   d4e02:	a808      	add	r0, sp, #32
-   d4e04:	f002 f9a3 	bl	d714e <_ZN6String6concatERKS_>
-   d4e08:	4628      	mov	r0, r5
-   d4e0a:	f002 f8d7 	bl	d6fbc <_ZN6StringD1Ev>
-      printToDisplay(output);
-   d4e0e:	a908      	add	r1, sp, #32
-   d4e10:	4628      	mov	r0, r5
-   d4e12:	f002 f941 	bl	d7098 <_ZN6StringC1ERKS_>
-   d4e16:	4628      	mov	r0, r5
-   d4e18:	f7ff f9d2 	bl	d41c0 <_Z14printToDisplay6String>
-   d4e1c:	4628      	mov	r0, r5
-   d4e1e:	f002 f8cd 	bl	d6fbc <_ZN6StringD1Ev>
-      String output = ""; 
-   d4e22:	a808      	add	r0, sp, #32
-      prevValue = ambiValue;
-   d4e24:	803e      	strh	r6, [r7, #0]
-      String output = ""; 
-   d4e26:	f002 f8c9 	bl	d6fbc <_ZN6StringD1Ev>
-    if (isTemp)
-   d4e2a:	f898 3000 	ldrb.w	r3, [r8]
-   d4e2e:	2b00      	cmp	r3, #0
-   d4e30:	f47f af1b 	bne.w	d4c6a <loop.part.0+0x42>
+	String & operator += (const char *cstr)		{concat(cstr); return (*this);}
+   d4d40:	4996      	ldr	r1, [pc, #600]	; (d4f9c <loop+0x2fc>)
+   d4d42:	a808      	add	r0, sp, #32
+   d4d44:	f002 fa07 	bl	d7156 <_ZN6String6concatEPKc>
+
+    //set up output string with celsius and fahrenheit
+    output += "Celsius: ";
+    output += (String)temperature;
+   d4d48:	eeb0 0a48 	vmov.f32	s0, s16
+   d4d4c:	eef0 0a68 	vmov.f32	s1, s17
+   d4d50:	2106      	movs	r1, #6
+   d4d52:	a80c      	add	r0, sp, #48	; 0x30
+   d4d54:	f002 f9d0 	bl	d70f8 <_ZN6StringC1Edi>
+	String & operator += (const String &rhs)	{concat(rhs); return (*this);}
+   d4d58:	a90c      	add	r1, sp, #48	; 0x30
+   d4d5a:	a808      	add	r0, sp, #32
+   d4d5c:	f002 f9f7 	bl	d714e <_ZN6String6concatERKS_>
+   d4d60:	a80c      	add	r0, sp, #48	; 0x30
+   d4d62:	f002 f92b 	bl	d6fbc <_ZN6StringD1Ev>
+	String & operator += (const char *cstr)		{concat(cstr); return (*this);}
+   d4d66:	498e      	ldr	r1, [pc, #568]	; (d4fa0 <loop+0x300>)
+   d4d68:	a808      	add	r0, sp, #32
+   d4d6a:	f002 f9f4 	bl	d7156 <_ZN6String6concatEPKc>
+   d4d6e:	498d      	ldr	r1, [pc, #564]	; (d4fa4 <loop+0x304>)
+   d4d70:	a808      	add	r0, sp, #32
+   d4d72:	f002 f9f0 	bl	d7156 <_ZN6String6concatEPKc>
+    output += "\n";
+    output += "Fahrenheit: ";
+    output += (String)((temperature * 9 / 5) + 32);
+   d4d76:	4b8c      	ldr	r3, [pc, #560]	; (d4fa8 <loop+0x308>)
+   d4d78:	ec51 0b18 	vmov	r0, r1, d8
+   d4d7c:	2200      	movs	r2, #0
+   d4d7e:	f003 fd57 	bl	d8830 <__aeabi_dmul>
+   d4d82:	4b8a      	ldr	r3, [pc, #552]	; (d4fac <loop+0x30c>)
+   d4d84:	2200      	movs	r2, #0
+   d4d86:	f003 fe7d 	bl	d8a84 <__aeabi_ddiv>
+   d4d8a:	4b89      	ldr	r3, [pc, #548]	; (d4fb0 <loop+0x310>)
+   d4d8c:	2200      	movs	r2, #0
+   d4d8e:	f003 fb99 	bl	d84c4 <__adddf3>
+   d4d92:	ec41 0b19 	vmov	d9, r0, r1
+   d4d96:	2106      	movs	r1, #6
+   d4d98:	eeb0 0a49 	vmov.f32	s0, s18
+   d4d9c:	eef0 0a69 	vmov.f32	s1, s19
+   d4da0:	a80c      	add	r0, sp, #48	; 0x30
+   d4da2:	f002 f9a9 	bl	d70f8 <_ZN6StringC1Edi>
+	String & operator += (const String &rhs)	{concat(rhs); return (*this);}
+   d4da6:	a90c      	add	r1, sp, #48	; 0x30
+   d4da8:	a808      	add	r0, sp, #32
+   d4daa:	f002 f9d0 	bl	d714e <_ZN6String6concatERKS_>
+   d4dae:	a80c      	add	r0, sp, #48	; 0x30
+   d4db0:	f002 f904 	bl	d6fbc <_ZN6StringD1Ev>
+
+    //print to display
+    printToDisplay(output);
+   d4db4:	a908      	add	r1, sp, #32
+   d4db6:	a80c      	add	r0, sp, #48	; 0x30
+   d4db8:	f002 f96e 	bl	d7098 <_ZN6StringC1ERKS_>
+   d4dbc:	a80c      	add	r0, sp, #48	; 0x30
+   d4dbe:	f7ff f9ff 	bl	d41c0 <_Z14printToDisplay6String>
+   d4dc2:	a80c      	add	r0, sp, #48	; 0x30
+   d4dc4:	f002 f8fa 	bl	d6fbc <_ZN6StringD1Ev>
+
+    Blynk.virtualWrite(V0, temperature);
+   d4dc8:	eeb0 0a48 	vmov.f32	s0, s16
+   d4dcc:	eef0 0a68 	vmov.f32	s1, s17
+   d4dd0:	4878      	ldr	r0, [pc, #480]	; (d4fb4 <loop+0x314>)
+   d4dd2:	2100      	movs	r1, #0
+   d4dd4:	f7ff ff28 	bl	d4c28 <_ZN8BlynkApiI13BlynkProtocolI22BlynkTransportParticleEE12virtualWriteIJdEEEviDpT_>
+    Blynk.virtualWrite(V1, ((temperature * 9 / 5) + 32));
+   d4dd8:	eeb0 0a49 	vmov.f32	s0, s18
+   d4ddc:	eef0 0a69 	vmov.f32	s1, s19
+   d4de0:	4874      	ldr	r0, [pc, #464]	; (d4fb4 <loop+0x314>)
+   d4de2:	2101      	movs	r1, #1
+   d4de4:	f7ff ff20 	bl	d4c28 <_ZN8BlynkApiI13BlynkProtocolI22BlynkTransportParticleEE12virtualWriteIJdEEEviDpT_>
+    String output = "";
+   d4de8:	a808      	add	r0, sp, #32
+   d4dea:	f002 f8e7 	bl	d6fbc <_ZN6StringD1Ev>
+   d4dee:	e045      	b.n	d4e7c <loop+0x1dc>
+  if (isLight)
+   d4df0:	7823      	ldrb	r3, [r4, #0]
+   d4df2:	2b00      	cmp	r3, #0
+   d4df4:	d03d      	beq.n	d4e72 <loop+0x1d2>
+    sensor.powerOnAmbient();
+   d4df6:	4870      	ldr	r0, [pc, #448]	; (d4fb8 <loop+0x318>)
+   d4df8:	f000 fefd 	bl	d5bf6 <_ZN8VCNL404014powerOnAmbientEv>
+    uint16_t ambiValue = sensor.getAmbient();
+   d4dfc:	486e      	ldr	r0, [pc, #440]	; (d4fb8 <loop+0x318>)
+   d4dfe:	f000 fe7e 	bl	d5afe <_ZN8VCNL404010getAmbientEv>
+    String output = "";
+   d4e02:	4965      	ldr	r1, [pc, #404]	; (d4f98 <loop+0x2f8>)
+    uint16_t ambiValue = sensor.getAmbient();
+   d4e04:	4604      	mov	r4, r0
+    String output = "";
+   d4e06:	a808      	add	r0, sp, #32
+   d4e08:	f002 f923 	bl	d7052 <_ZN6StringC1EPKc>
+    if (ambiValue < lowCalibrated)
+   d4e0c:	683a      	ldr	r2, [r7, #0]
+   d4e0e:	4294      	cmp	r4, r2
+   d4e10:	ad0c      	add	r5, sp, #48	; 0x30
+   d4e12:	da57      	bge.n	d4ec4 <loop+0x224>
+      digitalWrite(D4, HIGH);
+   d4e14:	2101      	movs	r1, #1
+   d4e16:	2004      	movs	r0, #4
+   d4e18:	f003 f989 	bl	d812e <digitalWrite>
+      digitalWrite(D5, LOW);
+   d4e1c:	4631      	mov	r1, r6
+   d4e1e:	2005      	movs	r0, #5
+   d4e20:	f003 f985 	bl	d812e <digitalWrite>
+      digitalWrite(D6, LOW);
+   d4e24:	4631      	mov	r1, r6
+   d4e26:	2006      	movs	r0, #6
+   d4e28:	f003 f981 	bl	d812e <digitalWrite>
+      Blynk.notify("Light value dipped below lower bound!");
+   d4e2c:	4963      	ldr	r1, [pc, #396]	; (d4fbc <loop+0x31c>)
+      Blynk.notify("Light value has reached target range!");
+   d4e2e:	4861      	ldr	r0, [pc, #388]	; (d4fb4 <loop+0x314>)
+   d4e30:	f7ff fede 	bl	d4bf0 <_ZN8BlynkApiI13BlynkProtocolI22BlynkTransportParticleEE6notifyIA38_cEEvRKT_>
+	String & operator += (const char *cstr)		{concat(cstr); return (*this);}
+   d4e34:	4962      	ldr	r1, [pc, #392]	; (d4fc0 <loop+0x320>)
+   d4e36:	a808      	add	r0, sp, #32
+   d4e38:	f002 f98d 	bl	d7156 <_ZN6String6concatEPKc>
+    output += (String)ambiValue;
+   d4e3c:	220a      	movs	r2, #10
+   d4e3e:	4621      	mov	r1, r4
+   d4e40:	4628      	mov	r0, r5
+   d4e42:	f002 f946 	bl	d70d2 <_ZN6StringC1Eih>
+	String & operator += (const String &rhs)	{concat(rhs); return (*this);}
+   d4e46:	4629      	mov	r1, r5
+   d4e48:	a808      	add	r0, sp, #32
+   d4e4a:	f002 f980 	bl	d714e <_ZN6String6concatERKS_>
+   d4e4e:	4628      	mov	r0, r5
+   d4e50:	f002 f8b4 	bl	d6fbc <_ZN6StringD1Ev>
+    printToDisplay(output);
+   d4e54:	a908      	add	r1, sp, #32
+   d4e56:	4628      	mov	r0, r5
+   d4e58:	f002 f91e 	bl	d7098 <_ZN6StringC1ERKS_>
+   d4e5c:	4628      	mov	r0, r5
+   d4e5e:	f7ff f9af 	bl	d41c0 <_Z14printToDisplay6String>
+   d4e62:	4628      	mov	r0, r5
+   d4e64:	f002 f8aa 	bl	d6fbc <_ZN6StringD1Ev>
+    prevValue = ambiValue;
+   d4e68:	4b56      	ldr	r3, [pc, #344]	; (d4fc4 <loop+0x324>)
+    String output = "";
+   d4e6a:	a808      	add	r0, sp, #32
+    prevValue = ambiValue;
+   d4e6c:	801c      	strh	r4, [r3, #0]
+    String output = "";
+   d4e6e:	f002 f8a5 	bl	d6fbc <_ZN6StringD1Ev>
+  if (isTemp)
+   d4e72:	f898 3000 	ldrb.w	r3, [r8]
+   d4e76:	2b00      	cmp	r3, #0
+   d4e78:	f47f af38 	bne.w	d4cec <loop+0x4c>
   //digitalWrite(D4, LOW);
   //digitalWrite(D5, LOW);
   //digitalWrite(D6, LOW);
-    
-    //get values
-    uint16_t value = analogRead(A5); 
-   d4e34:	200e      	movs	r0, #14
-   d4e36:	f003 f9a6 	bl	d8186 <analogRead>
-   d4e3a:	4605      	mov	r5, r0
-    Serial.println(value);
-   d4e3c:	f002 fc30 	bl	d76a0 <_Z16_fetch_usbserialv>
+
+  //get values
+  uint16_t value = analogRead(A5);
+   d4e7c:	200e      	movs	r0, #14
+   d4e7e:	f003 f982 	bl	d8186 <analogRead>
+   d4e82:	4605      	mov	r5, r0
+  Serial.println(value);
+   d4e84:	f002 fc0c 	bl	d76a0 <_Z16_fetch_usbserialv>
             val = n;
         }
 #if __GNUC__ >= 9
 #pragma GCC diagnostic pop
 #endif // __GNUC__ >= 9
         return printNumber(val, base) + t;
-   d4e40:	b2a9      	uxth	r1, r5
-   d4e42:	4604      	mov	r4, r0
-   d4e44:	220a      	movs	r2, #10
-   d4e46:	f002 fa02 	bl	d724e <_ZN5Print11printNumberEmh>
+   d4e88:	220a      	movs	r2, #10
+   d4e8a:	4604      	mov	r4, r0
+   d4e8c:	b2a9      	uxth	r1, r5
+   d4e8e:	f002 f9de 	bl	d724e <_ZN5Print11printNumberEmh>
         n += println();
-   d4e4a:	4620      	mov	r0, r4
-   d4e4c:	f002 f9e9 	bl	d7222 <_ZN5Print7printlnEv>
+   d4e92:	4620      	mov	r0, r4
+   d4e94:	f002 f9c5 	bl	d7222 <_ZN5Print7printlnEv>
   // because my potentimeter is not working I am hard coding it
   int lightlevel = 1600;
-    //set values
-    if (lightlevel < lowCalibrated)
-   d4e50:	4b4b      	ldr	r3, [pc, #300]	; (d4f80 <loop.part.0+0x358>)
-   d4e52:	681b      	ldr	r3, [r3, #0]
-   d4e54:	f5b3 6fc8 	cmp.w	r3, #1600	; 0x640
-    {
-      digitalWrite(D5, HIGH);
-   d4e58:	f04f 0101 	mov.w	r1, #1
-    if (lightlevel < lowCalibrated)
-   d4e5c:	dd57      	ble.n	d4f0e <loop.part.0+0x2e6>
-      digitalWrite(D5, HIGH);
-   d4e5e:	2005      	movs	r0, #5
-   d4e60:	f003 f965 	bl	d812e <digitalWrite>
-      digitalWrite(D4, LOW);
-   d4e64:	2100      	movs	r1, #0
-   d4e66:	2004      	movs	r0, #4
-    }
-    
-    else if (lightlevel > highCalibrated)
-    {
-  digitalWrite(D4, HIGH);
-  digitalWrite(D5, LOW);
-   d4e68:	f003 f961 	bl	d812e <digitalWrite>
-  digitalWrite(D6, LOW);
-   d4e6c:	2100      	movs	r1, #0
-   d4e6e:	2006      	movs	r0, #6
-   d4e70:	f003 f95d 	bl	d812e <digitalWrite>
-    }
+  //set values
+  if (lightlevel < lowCalibrated)
+   d4e98:	683a      	ldr	r2, [r7, #0]
+   d4e9a:	f5b2 6fc8 	cmp.w	r2, #1600	; 0x640
+   d4e9e:	dd49      	ble.n	d4f34 <loop+0x294>
+  {
+    digitalWrite(D5, HIGH);
+   d4ea0:	2101      	movs	r1, #1
+   d4ea2:	2005      	movs	r0, #5
+   d4ea4:	f003 f943 	bl	d812e <digitalWrite>
+    digitalWrite(D4, LOW);
+   d4ea8:	2100      	movs	r1, #0
+   d4eaa:	2004      	movs	r0, #4
   }
 
-     
-    
+  else if (lightlevel > highCalibrated)
+  {
+    digitalWrite(D4, HIGH);
+    digitalWrite(D5, LOW);
+   d4eac:	f003 f93f 	bl	d812e <digitalWrite>
+    digitalWrite(D6, LOW);
+   d4eb0:	2100      	movs	r1, #0
+  }
+  else if (lightlevel > lowCalibrated && lightlevel < highCalibrated)
+  {
+    digitalWrite(D4, LOW);
+    digitalWrite(D5, LOW);
+    digitalWrite(D6, HIGH);
+   d4eb2:	2006      	movs	r0, #6
+   d4eb4:	f003 f93b 	bl	d812e <digitalWrite>
+  }
 }
-   d4e74:	f50d 6d86 	add.w	sp, sp, #1072	; 0x430
-   d4e78:	e8bd 87f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, pc}
-      else if (ambiValue < highCal)
-   d4e7c:	f8df 9114 	ldr.w	r9, [pc, #276]	; d4f94 <loop.part.0+0x36c>
-   d4e80:	f8b9 3000 	ldrh.w	r3, [r9]
-   d4e84:	429e      	cmp	r6, r3
-   d4e86:	d21a      	bcs.n	d4ebe <loop.part.0+0x296>
-        digitalWrite(D4, LOW);
-   d4e88:	4621      	mov	r1, r4
-   d4e8a:	2004      	movs	r0, #4
-   d4e8c:	f003 f94f 	bl	d812e <digitalWrite>
-        digitalWrite(D5, HIGH);
-   d4e90:	2101      	movs	r1, #1
-   d4e92:	2005      	movs	r0, #5
-   d4e94:	f003 f94b 	bl	d812e <digitalWrite>
-        digitalWrite(D6, LOW);
-   d4e98:	4621      	mov	r1, r4
-   d4e9a:	2006      	movs	r0, #6
-   d4e9c:	f003 f947 	bl	d812e <digitalWrite>
-        if (!((prevValue > lowCal) && (prevValue < highCal)))
-   d4ea0:	883b      	ldrh	r3, [r7, #0]
-   d4ea2:	f8ba 2000 	ldrh.w	r2, [sl]
-   d4ea6:	429a      	cmp	r2, r3
-   d4ea8:	d203      	bcs.n	d4eb2 <loop.part.0+0x28a>
-   d4eaa:	f8b9 2000 	ldrh.w	r2, [r9]
-   d4eae:	429a      	cmp	r2, r3
-   d4eb0:	d89d      	bhi.n	d4dee <loop.part.0+0x1c6>
-          Blynk.notify("Light value has reached target range!");
-   d4eb2:	4934      	ldr	r1, [pc, #208]	; (d4f84 <loop.part.0+0x35c>)
-   d4eb4:	482c      	ldr	r0, [pc, #176]	; (d4f68 <loop.part.0+0x340>)
-   d4eb6:	f7ff fe9b 	bl	d4bf0 <_ZN8BlynkApiI13BlynkProtocolI22BlynkTransportParticleEE6notifyIA38_cEEvRKT_>
-	String & operator += (const char *cstr)		{concat(cstr); return (*this);}
-   d4eba:	4932      	ldr	r1, [pc, #200]	; (d4f84 <loop.part.0+0x35c>)
-   d4ebc:	e794      	b.n	d4de8 <loop.part.0+0x1c0>
-      else if (ambiValue > highCal)
-   d4ebe:	d996      	bls.n	d4dee <loop.part.0+0x1c6>
-        digitalWrite(D4, LOW);
-   d4ec0:	4621      	mov	r1, r4
-   d4ec2:	2004      	movs	r0, #4
-   d4ec4:	f003 f933 	bl	d812e <digitalWrite>
-        digitalWrite(D5, LOW);
-   d4ec8:	4621      	mov	r1, r4
-   d4eca:	2005      	movs	r0, #5
-   d4ecc:	f003 f92f 	bl	d812e <digitalWrite>
-        digitalWrite(D6, HIGH);
-   d4ed0:	2101      	movs	r1, #1
-   d4ed2:	2006      	movs	r0, #6
+   d4eb8:	f50d 6d86 	add.w	sp, sp, #1072	; 0x430
+   d4ebc:	ecbd 8b04 	vpop	{d8-d9}
+   d4ec0:	e8bd 81f0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, pc}
+    else if ((ambiValue < highCalibrated) && ( ambiValue > lowCalibrated))
+   d4ec4:	4b40      	ldr	r3, [pc, #256]	; (d4fc8 <loop+0x328>)
+   d4ec6:	681b      	ldr	r3, [r3, #0]
+   d4ec8:	429c      	cmp	r4, r3
+   d4eca:	da0f      	bge.n	d4eec <loop+0x24c>
+   d4ecc:	4294      	cmp	r4, r2
+   d4ece:	dd0d      	ble.n	d4eec <loop+0x24c>
+      digitalWrite(D4, LOW);
+   d4ed0:	4631      	mov	r1, r6
+   d4ed2:	2004      	movs	r0, #4
    d4ed4:	f003 f92b 	bl	d812e <digitalWrite>
-        if (!((prevValue > highCal)))
-   d4ed8:	883a      	ldrh	r2, [r7, #0]
-   d4eda:	f8b9 3000 	ldrh.w	r3, [r9]
-   d4ede:	429a      	cmp	r2, r3
-   d4ee0:	d885      	bhi.n	d4dee <loop.part.0+0x1c6>
+      digitalWrite(D5, HIGH);
+   d4ed8:	2101      	movs	r1, #1
+   d4eda:	2005      	movs	r0, #5
+   d4edc:	f003 f927 	bl	d812e <digitalWrite>
+      digitalWrite(D6, LOW);
+   d4ee0:	4631      	mov	r1, r6
+   d4ee2:	2006      	movs	r0, #6
+   d4ee4:	f003 f923 	bl	d812e <digitalWrite>
+      Blynk.notify("Light value has reached target range!");
+   d4ee8:	4938      	ldr	r1, [pc, #224]	; (d4fcc <loop+0x32c>)
+   d4eea:	e7a0      	b.n	d4e2e <loop+0x18e>
+    else if (ambiValue > highCalibrated)
+   d4eec:	429c      	cmp	r4, r3
+   d4eee:	dda1      	ble.n	d4e34 <loop+0x194>
+      digitalWrite(D4, LOW);
+   d4ef0:	2100      	movs	r1, #0
+   d4ef2:	2004      	movs	r0, #4
+   d4ef4:	f003 f91b 	bl	d812e <digitalWrite>
+      digitalWrite(D5, LOW);
+   d4ef8:	2100      	movs	r1, #0
+   d4efa:	2005      	movs	r0, #5
+   d4efc:	f003 f917 	bl	d812e <digitalWrite>
+      digitalWrite(D6, HIGH);
+   d4f00:	2101      	movs	r1, #1
+   d4f02:	2006      	movs	r0, #6
+   d4f04:	f003 f913 	bl	d812e <digitalWrite>
         : buff((char*)addr), len(length), buff_size(buffsize)
-   d4ee2:	f44f 6380 	mov.w	r3, #1024	; 0x400
-   d4ee6:	4928      	ldr	r1, [pc, #160]	; (d4f88 <loop.part.0+0x360>)
-   d4ee8:	9307      	str	r3, [sp, #28]
+   d4f08:	2600      	movs	r6, #0
+   d4f0a:	f44f 6380 	mov.w	r3, #1024	; 0x400
+   d4f0e:	a805      	add	r0, sp, #20
+   d4f10:	492f      	ldr	r1, [pc, #188]	; (d4fd0 <loop+0x330>)
+   d4f12:	9505      	str	r5, [sp, #20]
+   d4f14:	e9cd 6306 	strd	r6, r3, [sp, #24]
     if (str == NULL) {
-   d4eea:	a805      	add	r0, sp, #20
-        : buff((char*)addr), len(length), buff_size(buffsize)
-   d4eec:	e9cd 5405 	strd	r5, r4, [sp, #20]
-   d4ef0:	f7ff f8ea 	bl	d40c8 <_ZN10BlynkParam3addEPKc.part.0>
+   d4f18:	f7ff f8d6 	bl	d40c8 <_ZN10BlynkParam3addEPKc.part.0>
         static_cast<Proto*>(this)->sendCmd(BLYNK_CMD_NOTIFY, 0, cmd.getBuffer(), cmd.getLength()-1);
-   d4ef4:	9b06      	ldr	r3, [sp, #24]
-   d4ef6:	481c      	ldr	r0, [pc, #112]	; (d4f68 <loop.part.0+0x340>)
-   d4ef8:	3b01      	subs	r3, #1
-   d4efa:	9300      	str	r3, [sp, #0]
-   d4efc:	210e      	movs	r1, #14
-   d4efe:	e9cd 4401 	strd	r4, r4, [sp, #4]
-   d4f02:	9b05      	ldr	r3, [sp, #20]
-   d4f04:	4622      	mov	r2, r4
-   d4f06:	f7ff fdb3 	bl	d4a70 <_ZN13BlynkProtocolI22BlynkTransportParticleE7sendCmdEhtPKvjS3_j>
-   d4f0a:	491f      	ldr	r1, [pc, #124]	; (d4f88 <loop.part.0+0x360>)
-   d4f0c:	e76c      	b.n	d4de8 <loop.part.0+0x1c0>
-  digitalWrite(D4, HIGH);
-   d4f0e:	2004      	movs	r0, #4
-   d4f10:	f003 f90d 	bl	d812e <digitalWrite>
-  digitalWrite(D5, LOW);
-   d4f14:	2100      	movs	r1, #0
-   d4f16:	2005      	movs	r0, #5
-   d4f18:	e7a6      	b.n	d4e68 <loop.part.0+0x240>
-   d4f1a:	bf00      	nop
-   d4f1c:	f3af 8000 	nop.w
-   d4f20:	66666666 	.word	0x66666666
-   d4f24:	400a6666 	.word	0x400a6666
-   d4f28:	00000000 	.word	0x00000000
-   d4f2c:	40affe00 	.word	0x40affe00
-   d4f30:	000d938e 	.word	0x000d938e
-   d4f34:	2003e622 	.word	0x2003e622
-   d4f38:	2003e5b0 	.word	0x2003e5b0
-   d4f3c:	3fe00000 	.word	0x3fe00000
-   d4f40:	40590000 	.word	0x40590000
-   d4f44:	000d945c 	.word	0x000d945c
-   d4f48:	000d9451 	.word	0x000d9451
-   d4f4c:	000d945b 	.word	0x000d945b
-   d4f50:	000d945d 	.word	0x000d945d
-   d4f54:	40220000 	.word	0x40220000
-   d4f58:	40140000 	.word	0x40140000
-   d4f5c:	40400000 	.word	0x40400000
-   d4f60:	000d946a 	.word	0x000d946a
-   d4f64:	000d946d 	.word	0x000d946d
-   d4f68:	2003e554 	.word	0x2003e554
-   d4f6c:	2003e640 	.word	0x2003e640
-   d4f70:	2003e63c 	.word	0x2003e63c
-   d4f74:	000d93a5 	.word	0x000d93a5
-   d4f78:	000d93cb 	.word	0x000d93cb
-   d4f7c:	000d9440 	.word	0x000d9440
-   d4f80:	2003e628 	.word	0x2003e628
-   d4f84:	000d93f5 	.word	0x000d93f5
-   d4f88:	000d941b 	.word	0x000d941b
-   d4f8c:	2003e623 	.word	0x2003e623
-   d4f90:	2003e624 	.word	0x2003e624
-   d4f94:	2003e620 	.word	0x2003e620
+   d4f1c:	9b06      	ldr	r3, [sp, #24]
+   d4f1e:	4825      	ldr	r0, [pc, #148]	; (d4fb4 <loop+0x314>)
+   d4f20:	3b01      	subs	r3, #1
+   d4f22:	9300      	str	r3, [sp, #0]
+   d4f24:	e9cd 6601 	strd	r6, r6, [sp, #4]
+   d4f28:	9b05      	ldr	r3, [sp, #20]
+   d4f2a:	4632      	mov	r2, r6
+   d4f2c:	210e      	movs	r1, #14
+   d4f2e:	f7ff fd9f 	bl	d4a70 <_ZN13BlynkProtocolI22BlynkTransportParticleE7sendCmdEhtPKvjS3_j>
+    }
+   d4f32:	e77f      	b.n	d4e34 <loop+0x194>
+  else if (lightlevel > highCalibrated)
+   d4f34:	4b24      	ldr	r3, [pc, #144]	; (d4fc8 <loop+0x328>)
+   d4f36:	681b      	ldr	r3, [r3, #0]
+   d4f38:	f5b3 6fc8 	cmp.w	r3, #1600	; 0x640
+   d4f3c:	da06      	bge.n	d4f4c <loop+0x2ac>
+    digitalWrite(D4, HIGH);
+   d4f3e:	2101      	movs	r1, #1
+   d4f40:	2004      	movs	r0, #4
+   d4f42:	f003 f8f4 	bl	d812e <digitalWrite>
+    digitalWrite(D5, LOW);
+   d4f46:	2100      	movs	r1, #0
+   d4f48:	2005      	movs	r0, #5
+   d4f4a:	e7af      	b.n	d4eac <loop+0x20c>
+  else if (lightlevel > lowCalibrated && lightlevel < highCalibrated)
+   d4f4c:	f5b2 6fc8 	cmp.w	r2, #1600	; 0x640
+   d4f50:	d0b2      	beq.n	d4eb8 <loop+0x218>
+   d4f52:	f5b3 6fc8 	cmp.w	r3, #1600	; 0x640
+   d4f56:	d0af      	beq.n	d4eb8 <loop+0x218>
+    digitalWrite(D4, LOW);
+   d4f58:	2100      	movs	r1, #0
+   d4f5a:	2004      	movs	r0, #4
+   d4f5c:	f003 f8e7 	bl	d812e <digitalWrite>
+    digitalWrite(D5, LOW);
+   d4f60:	2100      	movs	r1, #0
+   d4f62:	2005      	movs	r0, #5
+   d4f64:	f003 f8e3 	bl	d812e <digitalWrite>
+    digitalWrite(D6, HIGH);
+   d4f68:	2101      	movs	r1, #1
+   d4f6a:	e7a2      	b.n	d4eb2 <loop+0x212>
+   d4f6c:	f3af 8000 	nop.w
+   d4f70:	66666666 	.word	0x66666666
+   d4f74:	400a6666 	.word	0x400a6666
+   d4f78:	00000000 	.word	0x00000000
+   d4f7c:	40affe00 	.word	0x40affe00
+   d4f80:	2003e5c0 	.word	0x2003e5c0
+   d4f84:	2003e634 	.word	0x2003e634
+   d4f88:	000d9391 	.word	0x000d9391
+   d4f8c:	2003e638 	.word	0x2003e638
+   d4f90:	3fe00000 	.word	0x3fe00000
+   d4f94:	40590000 	.word	0x40590000
+   d4f98:	000d9432 	.word	0x000d9432
+   d4f9c:	000d9427 	.word	0x000d9427
+   d4fa0:	000d9431 	.word	0x000d9431
+   d4fa4:	000d9433 	.word	0x000d9433
+   d4fa8:	40220000 	.word	0x40220000
+   d4fac:	40140000 	.word	0x40140000
+   d4fb0:	40400000 	.word	0x40400000
+   d4fb4:	2003e564 	.word	0x2003e564
+   d4fb8:	2003e640 	.word	0x2003e640
+   d4fbc:	000d93a5 	.word	0x000d93a5
+   d4fc0:	000d9416 	.word	0x000d9416
+   d4fc4:	2003e63c 	.word	0x2003e63c
+   d4fc8:	2003e630 	.word	0x2003e630
+   d4fcc:	000d93cb 	.word	0x000d93cb
+   d4fd0:	000d93f1 	.word	0x000d93f1
+   d4fd4:	2003e635 	.word	0x2003e635
 
-000d4f98 <loop>:
-{
-   d4f98:	b508      	push	{r3, lr}
-  display.loop();
-   d4f9a:	4806      	ldr	r0, [pc, #24]	; (d4fb4 <loop+0x1c>)
-   d4f9c:	f000 fceb 	bl	d5976 <_ZN16OledWingAdafruit4loopEv>
-  if (digitalRead(A4)== HIGH) {//this means that we are pressing button 1 down}
-   d4fa0:	200f      	movs	r0, #15
-   d4fa2:	f003 f8dd 	bl	d8160 <digitalRead>
-   d4fa6:	2801      	cmp	r0, #1
-   d4fa8:	d103      	bne.n	d4fb2 <loop+0x1a>
+000d4fd8 <_GLOBAL__sub_I_Blynk>:
 }
-   d4faa:	e8bd 4008 	ldmia.w	sp!, {r3, lr}
-   d4fae:	f7ff be3b 	b.w	d4c28 <loop.part.0>
-   d4fb2:	bd08      	pop	{r3, pc}
-   d4fb4:	2003e5b0 	.word	0x2003e5b0
-
-000d4fb8 <_GLOBAL__sub_I_Blynk>:
-   d4fb8:	b538      	push	{r3, r4, r5, lr}
+   d4fd8:	b538      	push	{r3, r4, r5, lr}
         : domain(NULL), port(0)
-   d4fba:	4d1b      	ldr	r5, [pc, #108]	; (d5028 <_GLOBAL__sub_I_Blynk+0x70>)
+   d4fda:	4d16      	ldr	r5, [pc, #88]	; (d5034 <_GLOBAL__sub_I_Blynk+0x5c>)
 SYSTEM_THREAD(ENABLED);
-   d4fbc:	2100      	movs	r1, #0
-   d4fbe:	2001      	movs	r0, #1
-   d4fc0:	f001 fd5e 	bl	d6a80 <system_thread_set_state>
-   d4fc4:	4628      	mov	r0, r5
-   d4fc6:	f002 fee3 	bl	d7d90 <_ZN9TCPClientC1Ev>
-   d4fca:	f105 001c 	add.w	r0, r5, #28
-   d4fce:	f002 faaf 	bl	d7530 <_ZN9IPAddressC1Ev>
-   d4fd2:	2400      	movs	r4, #0
+   d4fdc:	2100      	movs	r1, #0
+   d4fde:	2001      	movs	r0, #1
+   d4fe0:	f001 fd4e 	bl	d6a80 <system_thread_set_state>
+   d4fe4:	4628      	mov	r0, r5
+   d4fe6:	f002 fed3 	bl	d7d90 <_ZN9TCPClientC1Ev>
+   d4fea:	f105 001c 	add.w	r0, r5, #28
+   d4fee:	f002 fa9f 	bl	d7530 <_ZN9IPAddressC1Ev>
+   d4ff2:	2400      	movs	r4, #0
 #ifndef BlynkSimpleParticle_h
 #define BlynkSimpleParticle_h
 
 #include "BlynkParticle.h"
 
 static BlynkTransportParticle _blynkTransport;
-   d4fd4:	4a15      	ldr	r2, [pc, #84]	; (d502c <_GLOBAL__sub_I_Blynk+0x74>)
-   d4fd6:	4916      	ldr	r1, [pc, #88]	; (d5030 <_GLOBAL__sub_I_Blynk+0x78>)
-   d4fd8:	636c      	str	r4, [r5, #52]	; 0x34
-   d4fda:	4628      	mov	r0, r5
-   d4fdc:	872c      	strh	r4, [r5, #56]	; 0x38
-   d4fde:	f003 f94f 	bl	d8280 <__aeabi_atexit>
+   d4ff4:	4a10      	ldr	r2, [pc, #64]	; (d5038 <_GLOBAL__sub_I_Blynk+0x60>)
+   d4ff6:	4911      	ldr	r1, [pc, #68]	; (d503c <_GLOBAL__sub_I_Blynk+0x64>)
+   d4ff8:	636c      	str	r4, [r5, #52]	; 0x34
+   d4ffa:	4628      	mov	r0, r5
+   d4ffc:	872c      	strh	r4, [r5, #56]	; 0x38
+   d4ffe:	f003 f93f 	bl	d8280 <__aeabi_atexit>
         , state(CONNECTING)
-   d4fe2:	4b14      	ldr	r3, [pc, #80]	; (d5034 <_GLOBAL__sub_I_Blynk+0x7c>)
+   d5002:	4b0f      	ldr	r3, [pc, #60]	; (d5040 <_GLOBAL__sub_I_Blynk+0x68>)
 VCNL4040 sensor;
-   d4fe4:	4814      	ldr	r0, [pc, #80]	; (d5038 <_GLOBAL__sub_I_Blynk+0x80>)
-   d4fe6:	619c      	str	r4, [r3, #24]
-   d4fe8:	e9c3 5400 	strd	r5, r4, [r3]
-   d4fec:	e9c3 4402 	strd	r4, r4, [r3, #8]
-   d4ff0:	e9c3 4404 	strd	r4, r4, [r3, #16]
-   d4ff4:	839c      	strh	r4, [r3, #28]
+   d5004:	480f      	ldr	r0, [pc, #60]	; (d5044 <_GLOBAL__sub_I_Blynk+0x6c>)
+   d5006:	619c      	str	r4, [r3, #24]
+   d5008:	e9c3 5400 	strd	r5, r4, [r3]
+   d500c:	e9c3 4402 	strd	r4, r4, [r3, #8]
+   d5010:	e9c3 4404 	strd	r4, r4, [r3, #16]
+   d5014:	839c      	strh	r4, [r3, #28]
 OledWingAdafruit display;
-   d4ff6:	4c11      	ldr	r4, [pc, #68]	; (d503c <_GLOBAL__sub_I_Blynk+0x84>)
+   d5016:	4c0c      	ldr	r4, [pc, #48]	; (d5048 <_GLOBAL__sub_I_Blynk+0x70>)
 VCNL4040 sensor;
-   d4ff8:	f000 fd47 	bl	d5a8a <_ZN8VCNL4040C1Ev>
+   d5018:	f000 fd37 	bl	d5a8a <_ZN8VCNL4040C1Ev>
 OledWingAdafruit display;
-   d4ffc:	2107      	movs	r1, #7
-   d4ffe:	4620      	mov	r0, r4
-   d5000:	f000 fc62 	bl	d58c8 <_ZN16OledWingAdafruitC1Ei>
-   d5004:	4620      	mov	r0, r4
-String mode = "init";
-   d5006:	4c0e      	ldr	r4, [pc, #56]	; (d5040 <_GLOBAL__sub_I_Blynk+0x88>)
-OledWingAdafruit display;
-   d5008:	4a08      	ldr	r2, [pc, #32]	; (d502c <_GLOBAL__sub_I_Blynk+0x74>)
-   d500a:	490e      	ldr	r1, [pc, #56]	; (d5044 <_GLOBAL__sub_I_Blynk+0x8c>)
-   d500c:	f003 f938 	bl	d8280 <__aeabi_atexit>
-String mode = "init";
-   d5010:	490d      	ldr	r1, [pc, #52]	; (d5048 <_GLOBAL__sub_I_Blynk+0x90>)
-   d5012:	4620      	mov	r0, r4
-   d5014:	f002 f81d 	bl	d7052 <_ZN6StringC1EPKc>
-   d5018:	4620      	mov	r0, r4
-   d501a:	4a04      	ldr	r2, [pc, #16]	; (d502c <_GLOBAL__sub_I_Blynk+0x74>)
-   d501c:	490b      	ldr	r1, [pc, #44]	; (d504c <_GLOBAL__sub_I_Blynk+0x94>)
+   d501c:	2107      	movs	r1, #7
+   d501e:	4620      	mov	r0, r4
+   d5020:	f000 fc52 	bl	d58c8 <_ZN16OledWingAdafruitC1Ei>
+   d5024:	4620      	mov	r0, r4
+   d5026:	4a04      	ldr	r2, [pc, #16]	; (d5038 <_GLOBAL__sub_I_Blynk+0x60>)
+   d5028:	4908      	ldr	r1, [pc, #32]	; (d504c <_GLOBAL__sub_I_Blynk+0x74>)
 }
-   d501e:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
-String mode = "init";
-   d5022:	f003 b92d 	b.w	d8280 <__aeabi_atexit>
-   d5026:	bf00      	nop
-   d5028:	2003e574 	.word	0x2003e574
-   d502c:	2003e550 	.word	0x2003e550
-   d5030:	000d40f9 	.word	0x000d40f9
-   d5034:	2003e554 	.word	0x2003e554
-   d5038:	2003e640 	.word	0x2003e640
-   d503c:	2003e5b0 	.word	0x2003e5b0
-   d5040:	2003e62c 	.word	0x2003e62c
-   d5044:	000d5895 	.word	0x000d5895
-   d5048:	000d9473 	.word	0x000d9473
-   d504c:	000d6fbd 	.word	0x000d6fbd
+   d502a:	e8bd 4038 	ldmia.w	sp!, {r3, r4, r5, lr}
+OledWingAdafruit display;
+   d502e:	f003 b927 	b.w	d8280 <__aeabi_atexit>
+   d5032:	bf00      	nop
+   d5034:	2003e584 	.word	0x2003e584
+   d5038:	2003e560 	.word	0x2003e560
+   d503c:	000d40f9 	.word	0x000d40f9
+   d5040:	2003e564 	.word	0x2003e564
+   d5044:	2003e640 	.word	0x2003e640
+   d5048:	2003e5c0 	.word	0x2003e5c0
+   d504c:	000d5895 	.word	0x000d5895
 
 000d5050 <_ZN8particle11SPISettingsD1Ev>:
   SPISettings()
@@ -2563,12 +2556,12 @@ String mode = "init";
       return p.printf("<SPISettings %s%u %s MODE%u>", default_ ? "default " : "", (unsigned int)clock_,
    d50b4:	4a05      	ldr	r2, [pc, #20]	; (d50cc <_ZNK8particle11SPISettings7printToER5Print+0x50>)
    d50b6:	e7ef      	b.n	d5098 <_ZNK8particle11SPISettings7printToER5Print+0x1c>
-   d50b8:	000d94dc 	.word	0x000d94dc
-   d50bc:	000d945c 	.word	0x000d945c
-   d50c0:	000d94d8 	.word	0x000d94d8
-   d50c4:	000d94d4 	.word	0x000d94d4
-   d50c8:	000d94f2 	.word	0x000d94f2
-   d50cc:	000d94cb 	.word	0x000d94cb
+   d50b8:	000d94a4 	.word	0x000d94a4
+   d50bc:	000d9432 	.word	0x000d9432
+   d50c0:	000d94a0 	.word	0x000d94a0
+   d50c4:	000d949c 	.word	0x000d949c
+   d50c8:	000d94ba 	.word	0x000d94ba
+   d50cc:	000d9493 	.word	0x000d9493
 
 000d50d0 <_ZN12Adafruit_GFX9writeLineEsssst>:
     @param    y1  End point y coordinate
@@ -3174,7 +3167,7 @@ WIDTH(w), HEIGHT(h)
 }
    d53f6:	bd30      	pop	{r4, r5, pc}
    d53f8:	01000101 	.word	0x01000101
-   d53fc:	000d9a18 	.word	0x000d9a18
+   d53fc:	000d99e0 	.word	0x000d99e0
 
 000d5400 <_ZN12Adafruit_GFX10drawBitmapEssPKhsst>:
   const uint8_t bitmap[], int16_t w, int16_t h, uint16_t color) {
@@ -3655,7 +3648,7 @@ WIDTH(w), HEIGHT(h)
    d5776:	b011      	add	sp, #68	; 0x44
    d5778:	ecbd 8b02 	vpop	{d8}
    d577c:	e8bd 8ff0 	ldmia.w	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, pc}
-   d5780:	000d950f 	.word	0x000d950f
+   d5780:	000d94d7 	.word	0x000d94d7
 
 000d5784 <_ZN12Adafruit_GFX5writeEh>:
 size_t Adafruit_GFX::write(uint8_t c) {
@@ -3834,7 +3827,7 @@ OledWingAdafruit::~OledWingAdafruit() {
    d58aa:	4620      	mov	r0, r4
    d58ac:	bd10      	pop	{r4, pc}
    d58ae:	bf00      	nop
-   d58b0:	000d9a70 	.word	0x000d9a70
+   d58b0:	000d9a38 	.word	0x000d9a38
 
 000d58b4 <_ZN16OledWingAdafruitD0Ev>:
 OledWingAdafruit::~OledWingAdafruit() {
@@ -3882,7 +3875,7 @@ OledWingAdafruit::OledWingAdafruit(int useButtons) : Adafruit_SSD1306(128, 32), 
    d5916:	bf00      	nop
    d5918:	00061a80 	.word	0x00061a80
    d591c:	000186a0 	.word	0x000186a0
-   d5920:	000d9a70 	.word	0x000d9a70
+   d5920:	000d9a38 	.word	0x000d9a38
 
 000d5924 <_ZN16OledWingAdafruit5setupEv>:
 
@@ -4703,7 +4696,7 @@ Adafruit_SSD1306::~Adafruit_SSD1306(void) {
 }
    d5d4c:	4620      	mov	r0, r4
    d5d4e:	bd10      	pop	{r4, pc}
-   d5d50:	000d9f7c 	.word	0x000d9f7c
+   d5d50:	000d9f44 	.word	0x000d9f44
 
 000d5d54 <_ZN16Adafruit_SSD1306D0Ev>:
 Adafruit_SSD1306::~Adafruit_SSD1306(void) {
@@ -4909,8 +4902,8 @@ Adafruit_SSD1306::Adafruit_SSD1306(uint8_t w, uint8_t h, TwoWire *twi,
    d5e96:	4620      	mov	r0, r4
    d5e98:	bd70      	pop	{r4, r5, r6, pc}
    d5e9a:	bf00      	nop
-   d5e9c:	000d9f7c 	.word	0x000d9f7c
-   d5ea0:	000d9ac8 	.word	0x000d9ac8
+   d5e9c:	000d9f44 	.word	0x000d9f44
+   d5ea0:	000d9a90 	.word	0x000d9a90
 
 000d5ea4 <_ZN16Adafruit_SSD130616ssd1306_command1Eh>:
 void Adafruit_SSD1306::ssd1306_command1(uint8_t c) {
@@ -5425,18 +5418,18 @@ void Adafruit_SSD1306::ssd1306_commandList(const uint8_t *c, uint8_t n) {
    d62a0:	f000 fd11 	bl	d6cc6 <_ZN8SPIClass14endTransactionEv>
    d62a4:	e792      	b.n	d61cc <_ZN16Adafruit_SSD13065beginEhhbb+0x184>
    d62a6:	bf00      	nop
-   d62a8:	000d9d94 	.word	0x000d9d94
-   d62ac:	000d9ad4 	.word	0x000d9ad4
-   d62b0:	000d9fdc 	.word	0x000d9fdc
-   d62b4:	000d9fe0 	.word	0x000d9fe0
-   d62b8:	000d9fe4 	.word	0x000d9fe4
+   d62a8:	000d9d5c 	.word	0x000d9d5c
+   d62ac:	000d9a9c 	.word	0x000d9a9c
+   d62b0:	000d9fa4 	.word	0x000d9fa4
+   d62b4:	000d9fa8 	.word	0x000d9fa8
+   d62b8:	000d9fac 	.word	0x000d9fac
    d62bc:	00200080 	.word	0x00200080
-   d62c0:	000d9fee 	.word	0x000d9fee
-   d62c4:	000d9fe8 	.word	0x000d9fe8
+   d62c0:	000d9fb6 	.word	0x000d9fb6
+   d62c4:	000d9fb0 	.word	0x000d9fb0
    d62c8:	00400080 	.word	0x00400080
-   d62cc:	000d9ff2 	.word	0x000d9ff2
+   d62cc:	000d9fba 	.word	0x000d9fba
    d62d0:	00100060 	.word	0x00100060
-   d62d4:	000d9ff5 	.word	0x000d9ff5
+   d62d4:	000d9fbd 	.word	0x000d9fbd
 
 000d62d8 <_ZN16Adafruit_SSD130621drawFastHLineInternalEssst>:
   int16_t x, int16_t y, int16_t w, uint16_t color) {
@@ -5678,8 +5671,8 @@ void Adafruit_SSD1306::ssd1306_commandList(const uint8_t *c, uint8_t n) {
    d645a:	7822      	ldrb	r2, [r4, #0]
    d645c:	4053      	eors	r3, r2
    d645e:	e7fa      	b.n	d6456 <_ZN16Adafruit_SSD130621drawFastVLineInternalEssst+0xf6>
-   d6460:	000d9fcc 	.word	0x000d9fcc
-   d6464:	000d9fd4 	.word	0x000d9fd4
+   d6460:	000d9f94 	.word	0x000d9f94
+   d6464:	000d9f9c 	.word	0x000d9f9c
 
 000d6468 <_ZN16Adafruit_SSD130613drawFastHLineEssst>:
   int16_t x, int16_t y, int16_t w, uint16_t color) {
@@ -5950,7 +5943,7 @@ void Adafruit_SSD1306::display(void) {
    d662c:	f000 bb4b 	b.w	d6cc6 <_ZN8SPIClass14endTransactionEv>
 }
    d6630:	e8bd 83f8 	ldmia.w	sp!, {r3, r4, r5, r6, r7, r8, r9, pc}
-   d6634:	000d9ff8 	.word	0x000d9ff8
+   d6634:	000d9fc0 	.word	0x000d9fc0
 
 000d6638 <_Z10BlynkDelaym>:
 #endif
@@ -6008,7 +6001,7 @@ WidgetReadHandler GetReadHandler(uint8_t pin)
 }
    d6654:	4770      	bx	lr
    d6656:	bf00      	nop
-   d6658:	000da000 	.word	0x000da000
+   d6658:	000d9fc8 	.word	0x000d9fc8
 
 000d665c <GetWriteHandler>:
 
@@ -6030,7 +6023,7 @@ WidgetWriteHandler GetWriteHandler(uint8_t pin)
 }
    d6668:	4770      	bx	lr
    d666a:	bf00      	nop
-   d666c:	000da200 	.word	0x000da200
+   d666c:	000da1c8 	.word	0x000da1c8
 
 000d6670 <netdb_freeaddrinfo>:
 
@@ -7204,7 +7197,7 @@ EthernetClass Ethernet;
 } // spark
    d6c7a:	4770      	bx	lr
    d6c7c:	2003e650 	.word	0x2003e650
-   d6c80:	000da408 	.word	0x000da408
+   d6c80:	000da3d0 	.word	0x000da3d0
 
 000d6c84 <_ZN8SPIClass4lockEv.isra.0>:
   }
@@ -7321,7 +7314,7 @@ void SPIClass::computeClockDivider(unsigned reference, unsigned targetSpeed, uin
 }
    d6cf0:	bd30      	pop	{r4, r5, pc}
    d6cf2:	bf00      	nop
-   d6cf4:	000da43c 	.word	0x000da43c
+   d6cf4:	000da404 	.word	0x000da404
 
 000d6cf8 <_ZN8SPIClass16beginTransactionERKN8particle11SPISettingsE>:
 {
@@ -7536,7 +7529,7 @@ SystemClass System;
    d6e28:	2003e664 	.word	0x2003e664
    d6e2c:	2003e658 	.word	0x2003e658
    d6e30:	ffff0000 	.word	0xffff0000
-   d6e34:	2003e550 	.word	0x2003e550
+   d6e34:	2003e560 	.word	0x2003e560
    d6e38:	000d6df3 	.word	0x000d6df3
 
 000d6e3c <_Z11str_reversePc>:
@@ -8276,7 +8269,7 @@ RecursiveMutex WiringBleLock::mutex_;
 RecursiveMutex WiringBleLock::mutex_;
    d71b4:	f001 b864 	b.w	d8280 <__aeabi_atexit>
    d71b8:	2003e668 	.word	0x2003e668
-   d71bc:	2003e550 	.word	0x2003e550
+   d71bc:	2003e560 	.word	0x2003e560
    d71c0:	000d7179 	.word	0x000d7179
 
 000d71c4 <_ZN5Print5writeEPKhj>:
@@ -8646,7 +8639,7 @@ void spark::logProcessControlRequest(ctrl_request* req) {
 }
    d734a:	4770      	bx	lr
    d734c:	2003e66c 	.word	0x2003e66c
-   d7350:	000da44c 	.word	0x000da44c
+   d7350:	000da414 	.word	0x000da414
 
 000d7354 <_GLOBAL__sub_I_TIME_FORMAT_DEFAULT>:
             calendar_time_cache = Convert_UnixTime_To_CalendarTime(unix_time);
@@ -8667,7 +8660,7 @@ const char* TimeClass::format_spec = TIME_FORMAT_DEFAULT;
 TimeClass Time;
    d735c:	4770      	bx	lr
    d735e:	bf00      	nop
-   d7360:	2003e4e8 	.word	0x2003e4e8
+   d7360:	2003e4f8 	.word	0x2003e4f8
    d7364:	2003e670 	.word	0x2003e670
 
 000d7368 <delay>:
@@ -8716,7 +8709,7 @@ RGBClass RGB;
    d7386:	f000 bf7b 	b.w	d8280 <__aeabi_atexit>
    d738a:	bf00      	nop
    d738c:	2003e674 	.word	0x2003e674
-   d7390:	2003e550 	.word	0x2003e550
+   d7390:	2003e560 	.word	0x2003e560
    d7394:	000d736f 	.word	0x000d736f
 
 000d7398 <_ZZ21module_user_init_hookENUlP6_reentjmPvE_4_FUNES0_jmS1_>:
@@ -8731,7 +8724,7 @@ void module_user_init_hook()
     }, nullptr);
    d739c:	4770      	bx	lr
    d739e:	bf00      	nop
-   d73a0:	2003e4ec 	.word	0x2003e4ec
+   d73a0:	2003e4fc 	.word	0x2003e4fc
 
 000d73a4 <serialEventRun>:
 {
@@ -8795,7 +8788,7 @@ void module_user_init_hook()
    d73f8:	f001 be84 	b.w	d9104 <memcpy>
    d73fc:	2003f400 	.word	0x2003f400
    d7400:	2003f404 	.word	0x2003f404
-   d7404:	000da828 	.word	0x000da828
+   d7404:	000da7f8 	.word	0x000da7f8
 
 000d7408 <_Z27ctrl_request_custom_handlerP12ctrl_request>:
 void __attribute((weak)) ctrl_request_custom_handler(ctrl_request* req) {
@@ -9026,7 +9019,7 @@ IPAddress::IPAddress()
    d7542:	4620      	mov	r0, r4
    d7544:	bd10      	pop	{r4, pc}
    d7546:	bf00      	nop
-   d7548:	000da474 	.word	0x000da474
+   d7548:	000da43c 	.word	0x000da43c
 
 000d754c <_ZN9IPAddressC1ERK16_HAL_IPAddress_t>:
 IPAddress::IPAddress(const HAL_IPAddress& address)
@@ -9044,7 +9037,7 @@ IPAddress::IPAddress(const HAL_IPAddress& address)
    d7568:	701a      	strb	r2, [r3, #0]
 }
    d756a:	bd10      	pop	{r4, pc}
-   d756c:	000da474 	.word	0x000da474
+   d756c:	000da43c 	.word	0x000da43c
 
 000d7570 <_ZNK9IPAddresscvbEv>:
     if (version() == 4) {
@@ -9106,7 +9099,7 @@ IPAddress::IPAddress(uint8_t first_octet, uint8_t second_octet, uint8_t third_oc
 }
    d75c8:	b003      	add	sp, #12
    d75ca:	bd30      	pop	{r4, r5, pc}
-   d75cc:	000da474 	.word	0x000da474
+   d75cc:	000da43c 	.word	0x000da43c
 
 000d75d0 <_ZN9IPAddressC1EPKh>:
 IPAddress::IPAddress(const uint8_t* addr)
@@ -9123,7 +9116,7 @@ IPAddress::IPAddress(const uint8_t* addr)
 }
    d75e4:	b002      	add	sp, #8
    d75e6:	bd10      	pop	{r4, pc}
-   d75e8:	000da474 	.word	0x000da474
+   d75e8:	000da43c 	.word	0x000da43c
 
 000d75ec <_ZN9USBSerial14blockOnOverrunEb>:
   HAL_USB_USART_Flush_Data(_serial);
@@ -9254,7 +9247,7 @@ USBSerial::USBSerial(HAL_USB_USART_Serial serial, const HAL_USB_USART_Config& co
 }
    d7688:	4620      	mov	r0, r4
    d768a:	bd10      	pop	{r4, pc}
-   d768c:	000da488 	.word	0x000da488
+   d768c:	000da450 	.word	0x000da450
 
 000d7690 <_Z19acquireSerialBufferv>:
 
@@ -9320,7 +9313,7 @@ USBSerial& _fetch_usbserial()
    d76e2:	bf00      	nop
    d76e4:	2003e68c 	.word	0x2003e68c
    d76e8:	2003e690 	.word	0x2003e690
-   d76ec:	2003e550 	.word	0x2003e550
+   d76ec:	2003e560 	.word	0x2003e560
    d76f0:	000d75f1 	.word	0x000d75f1
 
 000d76f4 <_ZN11USARTSerialD1Ev>:
@@ -9467,7 +9460,7 @@ USARTSerial::USARTSerial(hal_usart_interface_t serial, hal_usart_ring_buffer_t *
 }
    d7794:	4620      	mov	r0, r4
    d7796:	bd10      	pop	{r4, pc}
-   d7798:	000da4b8 	.word	0x000da4b8
+   d7798:	000da480 	.word	0x000da480
 
 000d779c <_Z22__fetch_global_Serial1v>:
 static hal_usart_ring_buffer_t* serial1_rx_buffer = nullptr;
@@ -9512,7 +9505,7 @@ USARTSerial& __fetch_global_Serial1()
    d77dc:	2003e6a8 	.word	0x2003e6a8
    d77e0:	2003e72c 	.word	0x2003e72c
    d77e4:	2003e7b0 	.word	0x2003e7b0
-   d77e8:	2003e550 	.word	0x2003e550
+   d77e8:	2003e560 	.word	0x2003e560
    d77ec:	000d76f5 	.word	0x000d76f5
 
 000d77f0 <_ZN7TwoWireD1Ev>:
@@ -9631,7 +9624,7 @@ TwoWire::TwoWire(hal_i2c_interface_t i2c, const hal_i2c_config_t& conf)
 }
    d7864:	4620      	mov	r0, r4
    d7866:	bd10      	pop	{r4, pc}
-   d7868:	000da4e8 	.word	0x000da4e8
+   d7868:	000da4b0 	.word	0x000da4b0
 
 000d786c <_ZN7TwoWire8setSpeedEm>:
   hal_i2c_set_speed(_i2c, clockSpeed, NULL);
@@ -9879,7 +9872,7 @@ TCPClient::operator bool() {
       }
    d7990:	4620      	mov	r0, r4
    d7992:	bd10      	pop	{r4, pc}
-   d7994:	000da444 	.word	0x000da444
+   d7994:	000da40c 	.word	0x000da40c
 
 000d7998 <_ZNSt23_Sp_counted_ptr_inplaceIN9TCPClient4DataESaIS1_ELN9__gnu_cxx12_Lock_policyE0EED0Ev>:
       ~_Sp_counted_ptr_inplace() noexcept { }
@@ -9998,7 +9991,7 @@ public:
    d7a4e:	4798      	blx	r3
    d7a50:	4628      	mov	r0, r5
    d7a52:	bd38      	pop	{r3, r4, r5, pc}
-   d7a54:	000da544 	.word	0x000da544
+   d7a54:	000da50c 	.word	0x000da50c
 
 000d7a58 <_ZN9TCPClientD0Ev>:
    d7a58:	b510      	push	{r4, lr}
@@ -10030,7 +10023,7 @@ class IPAddress : public Printable {
 }
    d7a84:	4630      	mov	r0, r6
    d7a86:	bd70      	pop	{r4, r5, r6, pc}
-   d7a88:	000da474 	.word	0x000da474
+   d7a88:	000da43c 	.word	0x000da43c
 
 000d7a8c <_ZN9TCPClient4peekEv>:
 int TCPClient::peek() {
@@ -10369,8 +10362,8 @@ int TCPClient::connect(IPAddress ip, uint16_t port, network_interface_t nif) {
    d7cee:	601a      	str	r2, [r3, #0]
    d7cf0:	e7d4      	b.n	d7c9c <_ZN9TCPClient9availableEv+0x54>
    d7cf2:	bf00      	nop
-   d7cf4:	000da50f 	.word	0x000da50f
-   d7cf8:	000da508 	.word	0x000da508
+   d7cf4:	000da4d7 	.word	0x000da4d7
+   d7cf8:	000da4d0 	.word	0x000da4d0
 
 000d7cfc <_ZN9TCPClient4stopEv>:
 void TCPClient::stop() {
@@ -10478,8 +10471,8 @@ TCPClient::TCPClient(sock_handle_t sock)
    d7d82:	b002      	add	sp, #8
    d7d84:	bd70      	pop	{r4, r5, r6, pc}
    d7d86:	bf00      	nop
-   d7d88:	000da544 	.word	0x000da544
-   d7d8c:	000da528 	.word	0x000da528
+   d7d88:	000da50c 	.word	0x000da50c
+   d7d8c:	000da4f0 	.word	0x000da4f0
 
 000d7d90 <_ZN9TCPClientC1Ev>:
 TCPClient::TCPClient()
@@ -10672,7 +10665,7 @@ class IPAddress : public Printable {
    d7eaa:	4625      	mov	r5, r4
    d7eac:	e7e8      	b.n	d7e80 <_ZN9TCPClient7connectEPKctm+0xc8>
    d7eae:	bf00      	nop
-   d7eb0:	000da474 	.word	0x000da474
+   d7eb0:	000da43c 	.word	0x000da43c
 
 000d7eb4 <_ZN5spark9WiFiClass5readyEv>:
     bool connecting(void) {
@@ -10762,7 +10755,7 @@ the same way.
 }
    d7f1a:	4770      	bx	lr
    d7f1c:	2003e7c4 	.word	0x2003e7c4
-   d7f20:	000da590 	.word	0x000da590
+   d7f20:	000da558 	.word	0x000da558
 
 000d7f24 <_ZN5spark12NetworkClass7connectEj>:
         return Network;
@@ -11062,7 +11055,7 @@ class IPAddress : public Printable {
 } // spark
    d8086:	4770      	bx	lr
    d8088:	2003e7cc 	.word	0x2003e7cc
-   d808c:	000da5cc 	.word	0x000da5cc
+   d808c:	000da594 	.word	0x000da594
 
 000d8090 <pinAvailable>:
 /*
@@ -11385,7 +11378,7 @@ hal_i2c_config_t __attribute__((weak)) acquireWireBuffer()
    d8226:	4620      	mov	r0, r4
    d8228:	bd38      	pop	{r3, r4, r5, pc}
    d822a:	bf00      	nop
-   d822c:	000da600 	.word	0x000da600
+   d822c:	000da5c8 	.word	0x000da5c8
 
 000d8230 <_Z19__fetch_global_Wirev>:
 	return defaultWireConfig();
@@ -11426,7 +11419,7 @@ TwoWire& __fetch_global_Wire()
    d826e:	bd30      	pop	{r4, r5, pc}
    d8270:	2003e7d8 	.word	0x2003e7d8
    d8274:	2003e7dc 	.word	0x2003e7dc
-   d8278:	2003e550 	.word	0x2003e550
+   d8278:	2003e560 	.word	0x2003e560
    d827c:	000d77f1 	.word	0x000d77f1
 
 000d8280 <__aeabi_atexit>:
@@ -11446,7 +11439,7 @@ TwoWire& __fetch_global_Wire()
    d8294:	4901      	ldr	r1, [pc, #4]	; (d829c <_ZNSt19_Sp_make_shared_tag5_S_eqERKSt9type_info+0x8>)
    d8296:	f000 b8f9 	b.w	d848c <_ZNKSt9type_infoeqERKS_>
    d829a:	bf00      	nop
-   d829c:	000da61c 	.word	0x000da61c
+   d829c:	000da5e4 	.word	0x000da5e4
 
 000d82a0 <_ZNK10__cxxabiv117__class_type_info11__do_upcastEPKS0_PPv>:
    d82a0:	b57f      	push	{r0, r1, r2, r3, r4, r5, r6, lr}
@@ -11488,7 +11481,7 @@ TwoWire& __fetch_global_Wire()
    d82e8:	f000 f8cd 	bl	d8486 <_ZNSt9type_infoD1Ev>
    d82ec:	4620      	mov	r0, r4
    d82ee:	bd10      	pop	{r4, pc}
-   d82f0:	000da65c 	.word	0x000da65c
+   d82f0:	000da624 	.word	0x000da624
 
 000d82f4 <_ZN10__cxxabiv117__class_type_infoD0Ev>:
    d82f4:	b510      	push	{r4, lr}
@@ -11568,7 +11561,7 @@ TwoWire& __fetch_global_Wire()
    d8390:	f7ff ffa6 	bl	d82e0 <_ZN10__cxxabiv117__class_type_infoD1Ev>
    d8394:	4620      	mov	r0, r4
    d8396:	bd10      	pop	{r4, pc}
-   d8398:	000da6bc 	.word	0x000da6bc
+   d8398:	000da684 	.word	0x000da684
 
 000d839c <_ZN10__cxxabiv120__si_class_type_infoD0Ev>:
    d839c:	b510      	push	{r4, lr}
@@ -12843,7 +12836,7 @@ TwoWire& __fetch_global_Wire()
    d9162:	615a      	str	r2, [r3, #20]
    d9164:	bd38      	pop	{r3, r4, r5, pc}
    d9166:	bf00      	nop
-   d9168:	2003e4ec 	.word	0x2003e4ec
+   d9168:	2003e4fc 	.word	0x2003e4fc
    d916c:	abcd330e 	.word	0xabcd330e
    d9170:	e66d1234 	.word	0xe66d1234
    d9174:	0005deec 	.word	0x0005deec
@@ -12990,7 +12983,7 @@ TwoWire& __fetch_global_Wire()
    d92be:	230a      	movs	r3, #10
    d92c0:	e7ad      	b.n	d921e <_strtol_l.isra.0+0x4a>
    d92c2:	bf00      	nop
-   d92c4:	000da6f6 	.word	0x000da6f6
+   d92c4:	000da6be 	.word	0x000da6be
 
 000d92c8 <strtol>:
    d92c8:	4613      	mov	r3, r2
@@ -13000,470 +12993,467 @@ TwoWire& __fetch_global_Wire()
    d92d0:	6800      	ldr	r0, [r0, #0]
    d92d2:	f7ff bf7f 	b.w	d91d4 <_strtol_l.isra.0>
    d92d6:	bf00      	nop
-   d92d8:	2003e4ec 	.word	0x2003e4ec
+   d92d8:	2003e4fc 	.word	0x2003e4fc
 
 000d92dc <dynalib_user>:
    d92dc:	000d4021 000d405d 000d4085 000d4089     !@..]@...@...@..
    d92ec:	00000000 25006925 6900696c 756f006e     ....%i.%li.in.ou
-   d92fc:	77700074 7764006d 00776100 6e727554     t.pwm.dw.aw.Turn
-   d930c:	65687420 746f7020 69746e65 74656d6f      the potentiomet
-   d931c:	74207265 6163206f 7262696c 20657461     er to calibrate 
-   d932c:	20656874 69626d61 20746e65 6867696c     the ambient ligh
-   d933c:	61762074 7365756c 65440021 65636976     t values!.Device
-   d934c:	746f6e20 756f6620 202e646e 61656c50      not found. Plea
-   d935c:	63206573 6b636568 72697720 2e676e69     se check wiring.
-   d936c:	6a6e6300 5f6e4458 63763774 2d493373     .cnjXDn_t7vcs3I-
-   d937c:	6a2d5250 626f5362 5f5f6447 4d71326a     PR-jbSobGd__j2qM
-   d938c:	75620039 6e6f7474 69203120 72702064     9.button 1 id pr
-   d939c:	65737365 2e2e2e64 67694c00 76207468     essed....Light v
+   d92fc:	77700074 7764006d 00776100 73657270     t.pwm.dw.aw.pres
+   d930c:	68742073 75622065 6e6f7474 206f7420     s the button to 
+   d931c:	696c6163 74617262 68742065 6d612065     calibrate the am
+   d932c:	6e656962 696c2074 20746867 756c6176     bient light valu
+   d933c:	00217365 69766544 6e206563 6620746f     es!.Device not f
+   d934c:	646e756f 6c50202e 65736165 65686320     ound. Please che
+   d935c:	77206b63 6e697269 38002e67 6e305264     ck wiring..8dR0n
+   d936c:	77366a49 5a74596c 4465416b 4b342d6e     Ij6wlYtZkAeDn-4K
+   d937c:	57566a30 4e43794f 004d635f 25007776     0jVWOyCN_cM.vw.%
+   d938c:	66372e32 68204100 62207361 206e6565     2.7f.A has been 
+   d939c:	73657270 64736573 67694c00 76207468     pressesd.Light v
    d93ac:	65756c61 70696420 20646570 6f6c6562     alue dipped belo
    d93bc:	6f6c2077 20726577 6e756f62 4c002164     w lower bound!.L
-   d93cc:	74686769 6c617620 68206575 64207361     ight value has d
-   d93dc:	65707069 65622064 20776f6c 65776f6c     ipped below lowe
-   d93ec:	6f622072 21646e75 67694c00 76207468     r bound!.Light v
-   d93fc:	65756c61 73616820 61657220 64656863     alue has reached
-   d940c:	72617420 20746567 676e6172 4c002165      target range!.L
-   d941c:	74686769 6c617620 68206575 70207361     ight value has p
-   d942c:	65737361 69682064 72656867 756f6220     assed higher bou
-   d943c:	0021646e 626d410a 746e6569 6c615620     nd!..Ambient Val
-   d944c:	203a6575 6c654300 73756973 0a00203a     ue: .Celsius: ..
-   d945c:	68614600 686e6572 3a746965 77760020     .Fahrenheit: .vw
-   d946c:	2e322500 69006637 0074696e              .%2.7f.init.
+   d93cc:	74686769 6c617620 68206575 72207361     ight value has r
+   d93dc:	68636165 74206465 65677261 61722074     eached target ra
+   d93ec:	2165676e 67694c00 76207468 65756c61     nge!.Light value
+   d93fc:	73616820 73617020 20646573 68676968      has passed high
+   d940c:	62207265 646e756f 410a0021 6569626d     er bound!..Ambie
+   d941c:	5620746e 65756c61 4300203a 69736c65     nt Value: .Celsi
+   d942c:	203a7375 46000a00 65726861 6965686e     us: ...Fahrenhei
+   d943c:	00203a74                                t: .
 
-000d9478 <_ZZN8BlynkApiI13BlynkProtocolI22BlynkTransportParticleEE8sendInfoEvE7profile>:
-   d9478:	6b6e6c62 00666e69 00726576 2e302e31     blnkinf.ver.1.0.
-   d9488:	2d680030 74616562 00353400 66667562     0.h-beat.45.buff
-   d9498:	006e692d 34323031 76656400 72615000     -in.1024.dev.Par
-   d94a8:	6c636974 75620065 00646c69 206c754a     ticle.build.Jul 
-   d94b8:	32203620 20313230 323a3332 30343a30      6 2021 23:20:40
-   d94c8:	64000000 75616665 0020746c 0042534d     ...default .MSB.
-   d94d8:	0042534c 4950533c 74746553 73676e69     LSB.<SPISettings
-   d94e8:	66656420 746c7561 533c003e 65534950      default>.<SPISe
-   d94f8:	6e697474 25207367 20752573 4d207325     ttings %s%u %s M
-   d9508:	2545444f                                 ODE%u>.
+000d9440 <_ZZN8BlynkApiI13BlynkProtocolI22BlynkTransportParticleEE8sendInfoEvE7profile>:
+   d9440:	6b6e6c62 00666e69 00726576 2e302e31     blnkinf.ver.1.0.
+   d9450:	2d680030 74616562 00353400 66667562     0.h-beat.45.buff
+   d9460:	006e692d 34323031 76656400 72615000     -in.1024.dev.Par
+   d9470:	6c636974 75620065 00646c69 206c754a     ticle.build.Jul 
+   d9480:	32203720 20313230 353a3931 39333a33      7 2021 19:53:39
+   d9490:	64000000 75616665 0020746c 0042534d     ...default .MSB.
+   d94a0:	0042534c 4950533c 74746553 73676e69     LSB.<SPISettings
+   d94b0:	66656420 746c7561 533c003e 65534950      default>.<SPISe
+   d94c0:	6e697474 25207367 20752573 4d207325     ttings %s%u %s M
+   d94d0:	2545444f                                 ODE%u>.
 
-000d950f <_ZL4font>:
-   d950f:	00000000 4f5b3e00 6b3e3e5b 1c3e6b4f     .....>[O[>>kOk>.
-   d951f:	1c3e7c3e 3c7e3c18 7d571c18 5e1c1c57     >|>..<~<..W}W..^
-   d952f:	001c5e7f 00183c18 e7c3e7ff 241800ff     .^...<.........$
-   d953f:	e7ff0018 30ffe7db 0e063a48 29792926     .......0H:..&)y)
-   d954f:	057f4026 7f400705 5a3f2505 5a3ce73c     &@....@..%?Z<.<Z
-   d955f:	1c1c3e7f 1c1c0808 22147f3e 5f14227f     .>......>.."."._
-   d956f:	5f5f005f 017f0906 8966007f 60606a95     _.__......f..j``
-   d957f:	94606060 94a2ffa2 047e0408 7e201008     ```.......~... ~
-   d958f:	08081020 08081c2a 08082a1c 1010101e      ...*....*......
-   d959f:	0c1e0c10 38300c1e 0630383e 060e3e0e     ......08>80..>..
-   d95af:	00000000 5f000000 07000000 14000700     ......._........
-   d95bf:	147f147f 2a7f2a24 08132312 49366264     ....$*.*.#..db6I
-   d95cf:	00502056 00030708 41221c00 22410000     V P......."A..A"
-   d95df:	1c2a001c 082a1c7f 08083e08 30708000     ..*...*..>....p0
-   d95ef:	08080800 00000808 20006060 02040810     ........``. ....
-   d95ff:	4549513e 7f42003e 49720040 21464949     >QIE>.B.@.rIIIF!
-   d960f:	334d4941 7f121418 45452710 4a3c3945     AIM3.....'EEE9<J
-   d961f:	41314949 07091121 49494936 49494636     II1A!...6III6FII
-   d962f:	00001e29 00000014 00003440 22140800     ).......@4....."
-   d963f:	14141441 41001414 02081422 06095901     A......A"....Y..
-   d964f:	595d413e 11127c4e 497f7c12 3e364949     >A]YN|...|.III6>
-   d965f:	22414141 4141417f 49497f3e 097f4149     AAA".AAA>.IIIA..
-   d966f:	3e010909 73514141 0808087f 7f41007f     ...>AAQs......A.
-   d967f:	40200041 7f013f41 41221408 4040407f     A. @A?...."A.@@@
-   d968f:	1c027f40 047f7f02 3e7f1008 3e414141     @..........>AAA>
-   d969f:	0909097f 51413e06 097f5e21 26462919     .....>AQ!^...)F&
-   d96af:	32494949 017f0103 40403f03 201f3f40     III2.....?@@@?. 
-   d96bf:	3f1f2040 3f403840 14081463 78040363     @ .?@8@?c...c..x
-   d96cf:	59610304 00434d49 4141417f 10080402     ..aYIMC..AAA....
-   d96df:	41410020 02047f41 40040201 40404040      .AAA......@@@@@
-   d96ef:	08070300 54542000 287f4078 38384444     ..... TTx@.(DD88
-   d96ff:	28444444 28444438 5454387f 08001854     DDD(8DD(.8TTT...
-   d970f:	1802097e 789ca4a4 0404087f 7d440078     ~......x....x.D}
-   d971f:	40200040 7f003d40 00442810 407f4100     @. @@=...(D..A.@
-   d972f:	78047c00 087c7804 38780404 38444444     .|.x.x|...x8DDD8
-   d973f:	242418fc 24241818 087cfc18 48080404     ..$$..$$..|....H
-   d974f:	24545454 443f0404 40403c24 201c7c20     TTT$..?D$<@@ |. 
-   d975f:	3c1c2040 3c403040 28102844 90904c44     @ .<@0@<D(.(DL..
-   d976f:	64447c90 00444c54 00413608 00770000     .|DdTLD..6A...w.
-   d977f:	36410000 01020008 3c020402 3c262326     ..A6.......<&#&<
-   d978f:	61a1a11e 40403a12 54387a20 21595554     ...a.:@@ z8TTUY!
-   d979f:	41795555 78545422 54552142 54204078     UUyA"TTxB!UTx@ T
-   d97af:	0c407955 1272521e 55555539 54543959     Uy@..Rr.9UUUY9TT
-   d97bf:	55395954 00585454 417c4500 7d450200     TY9UTTX..E|A..E}
-   d97cf:	45010042 127d407c f07d1211 f0282528     B..E|@}...}.(%(.
-   d97df:	4555547c 54542000 0a7c547c 32497f09     |TUE. TT|T|...I2
-   d97ef:	32494949 4444443a 484a323a 413a3048     III2:DDD:2JHH0:A
-   d97ff:	3a7a2141 78204042 a0a09d00 42423d7d     A!z:B@ x....}=BB
-   d980f:	403d3d42 3c3d4040 2424ff24 43497e48     B==@@@=<$.$$H~IC
-   d981f:	fc2f2b66 09ff2b2f c020f629 03097e88     f+/./+..). ..~..
-   d982f:	79545420 44000041 4830417d 38324a48      TTyA..D}A0HHJ28
-   d983f:	7a224040 0a0a7a00 190d7d72 29267d31     @@"z.z..r}..1}&)
-   d984f:	26282f29 26292929 404d4830 08083820     )/(&)))&0HM@ 8..
-   d985f:	08080808 2f380808 baacc810 3428102f     ......8/..../.(4
-   d986f:	7b0000fa 14080000 2222142a 08142a14     ...{....*."".*..
-   d987f:	00550055 aa55aa55 55ffaa55 00ff55ff     U.U.U.U.U..U.U..
-   d988f:	00ff0000 ff101010 14141400 101000ff     ................
-   d989f:	10ff00ff f010f010 fc141414 f7141400     ................
-   d98af:	0000ff00 14ff00ff fc04f414 10171414     ................
-   d98bf:	1f10101f 14141f10 10001f14 00f01010     ................
-   d98cf:	1f000000 10101010 1010101f 0010f010     ................
-   d98df:	10ff0000 10101010 10101010 000010ff     ................
-   d98ef:	0014ff00 ff00ff00 101f0000 fc000017     ................
-   d98ff:	1414f404 14171017 f404f414 00ff0000     ................
-   d990f:	141414f7 14141414 14f700f7 14171414     ................
-   d991f:	101f1010 1414141f 101014f4 00f010f0     ................
-   d992f:	1f101f00 1f000000 00000014 000014fc     ................
-   d993f:	10f010f0 ff10ff10 ff141414 10101014     ................
-   d994f:	0000001f ff10f000 ffffffff f0f0f0f0     ................
-   d995f:	fffffff0 00000000 0fffff00 0f0f0f0f     ................
-   d996f:	38444438 4a4afc44 027e344a 02060602     8DD8D.JJJ4~.....
-   d997f:	027e027e 41495563 44443863 7e40043c     ~.~.cUIAc8DD<.@~
-   d998f:	06201e20 02027e02 a5e7a599 492a1c99      . ..~........*I
-   d999f:	724c1c2a 304c7201 304d4d4a 48784830     *.Lr.rL0JMM00HxH
-   d99af:	5a62bc30 493e3d46 7e004949 7e010101     0.bZF=>III.~...~
-   d99bf:	2a2a2a2a 5f44442a 51404444 4040444a     *****DD_DD@QJD@@
-   d99cf:	40514a44 01ff0000 ff80e003 08080000     DJQ@............
-   d99df:	36086b6b 36243612 0f090f06 18000006     kk.6.6$6........
-   d99ef:	00000018 30001010 0101ff40 01011f00     .......0@.......
-   d99ff:	1d19001e 3c001217 003c3c3c 00000000     .......<<<<.....
+000d94d7 <_ZL4font>:
+   d94d7:	00000000 4f5b3e00 6b3e3e5b 1c3e6b4f     .....>[O[>>kOk>.
+   d94e7:	1c3e7c3e 3c7e3c18 7d571c18 5e1c1c57     >|>..<~<..W}W..^
+   d94f7:	001c5e7f 00183c18 e7c3e7ff 241800ff     .^...<.........$
+   d9507:	e7ff0018 30ffe7db 0e063a48 29792926     .......0H:..&)y)
+   d9517:	057f4026 7f400705 5a3f2505 5a3ce73c     &@....@..%?Z<.<Z
+   d9527:	1c1c3e7f 1c1c0808 22147f3e 5f14227f     .>......>.."."._
+   d9537:	5f5f005f 017f0906 8966007f 60606a95     _.__......f..j``
+   d9547:	94606060 94a2ffa2 047e0408 7e201008     ```.......~... ~
+   d9557:	08081020 08081c2a 08082a1c 1010101e      ...*....*......
+   d9567:	0c1e0c10 38300c1e 0630383e 060e3e0e     ......08>80..>..
+   d9577:	00000000 5f000000 07000000 14000700     ......._........
+   d9587:	147f147f 2a7f2a24 08132312 49366264     ....$*.*.#..db6I
+   d9597:	00502056 00030708 41221c00 22410000     V P......."A..A"
+   d95a7:	1c2a001c 082a1c7f 08083e08 30708000     ..*...*..>....p0
+   d95b7:	08080800 00000808 20006060 02040810     ........``. ....
+   d95c7:	4549513e 7f42003e 49720040 21464949     >QIE>.B.@.rIIIF!
+   d95d7:	334d4941 7f121418 45452710 4a3c3945     AIM3.....'EEE9<J
+   d95e7:	41314949 07091121 49494936 49494636     II1A!...6III6FII
+   d95f7:	00001e29 00000014 00003440 22140800     ).......@4....."
+   d9607:	14141441 41001414 02081422 06095901     A......A"....Y..
+   d9617:	595d413e 11127c4e 497f7c12 3e364949     >A]YN|...|.III6>
+   d9627:	22414141 4141417f 49497f3e 097f4149     AAA".AAA>.IIIA..
+   d9637:	3e010909 73514141 0808087f 7f41007f     ...>AAQs......A.
+   d9647:	40200041 7f013f41 41221408 4040407f     A. @A?...."A.@@@
+   d9657:	1c027f40 047f7f02 3e7f1008 3e414141     @..........>AAA>
+   d9667:	0909097f 51413e06 097f5e21 26462919     .....>AQ!^...)F&
+   d9677:	32494949 017f0103 40403f03 201f3f40     III2.....?@@@?. 
+   d9687:	3f1f2040 3f403840 14081463 78040363     @ .?@8@?c...c..x
+   d9697:	59610304 00434d49 4141417f 10080402     ..aYIMC..AAA....
+   d96a7:	41410020 02047f41 40040201 40404040      .AAA......@@@@@
+   d96b7:	08070300 54542000 287f4078 38384444     ..... TTx@.(DD88
+   d96c7:	28444444 28444438 5454387f 08001854     DDD(8DD(.8TTT...
+   d96d7:	1802097e 789ca4a4 0404087f 7d440078     ~......x....x.D}
+   d96e7:	40200040 7f003d40 00442810 407f4100     @. @@=...(D..A.@
+   d96f7:	78047c00 087c7804 38780404 38444444     .|.x.x|...x8DDD8
+   d9707:	242418fc 24241818 087cfc18 48080404     ..$$..$$..|....H
+   d9717:	24545454 443f0404 40403c24 201c7c20     TTT$..?D$<@@ |. 
+   d9727:	3c1c2040 3c403040 28102844 90904c44     @ .<@0@<D(.(DL..
+   d9737:	64447c90 00444c54 00413608 00770000     .|DdTLD..6A...w.
+   d9747:	36410000 01020008 3c020402 3c262326     ..A6.......<&#&<
+   d9757:	61a1a11e 40403a12 54387a20 21595554     ...a.:@@ z8TTUY!
+   d9767:	41795555 78545422 54552142 54204078     UUyA"TTxB!UTx@ T
+   d9777:	0c407955 1272521e 55555539 54543959     Uy@..Rr.9UUUY9TT
+   d9787:	55395954 00585454 417c4500 7d450200     TY9UTTX..E|A..E}
+   d9797:	45010042 127d407c f07d1211 f0282528     B..E|@}...}.(%(.
+   d97a7:	4555547c 54542000 0a7c547c 32497f09     |TUE. TT|T|...I2
+   d97b7:	32494949 4444443a 484a323a 413a3048     III2:DDD:2JHH0:A
+   d97c7:	3a7a2141 78204042 a0a09d00 42423d7d     A!z:B@ x....}=BB
+   d97d7:	403d3d42 3c3d4040 2424ff24 43497e48     B==@@@=<$.$$H~IC
+   d97e7:	fc2f2b66 09ff2b2f c020f629 03097e88     f+/./+..). ..~..
+   d97f7:	79545420 44000041 4830417d 38324a48      TTyA..D}A0HHJ28
+   d9807:	7a224040 0a0a7a00 190d7d72 29267d31     @@"z.z..r}..1}&)
+   d9817:	26282f29 26292929 404d4830 08083820     )/(&)))&0HM@ 8..
+   d9827:	08080808 2f380808 baacc810 3428102f     ......8/..../.(4
+   d9837:	7b0000fa 14080000 2222142a 08142a14     ...{....*."".*..
+   d9847:	00550055 aa55aa55 55ffaa55 00ff55ff     U.U.U.U.U..U.U..
+   d9857:	00ff0000 ff101010 14141400 101000ff     ................
+   d9867:	10ff00ff f010f010 fc141414 f7141400     ................
+   d9877:	0000ff00 14ff00ff fc04f414 10171414     ................
+   d9887:	1f10101f 14141f10 10001f14 00f01010     ................
+   d9897:	1f000000 10101010 1010101f 0010f010     ................
+   d98a7:	10ff0000 10101010 10101010 000010ff     ................
+   d98b7:	0014ff00 ff00ff00 101f0000 fc000017     ................
+   d98c7:	1414f404 14171017 f404f414 00ff0000     ................
+   d98d7:	141414f7 14141414 14f700f7 14171414     ................
+   d98e7:	101f1010 1414141f 101014f4 00f010f0     ................
+   d98f7:	1f101f00 1f000000 00000014 000014fc     ................
+   d9907:	10f010f0 ff10ff10 ff141414 10101014     ................
+   d9917:	0000001f ff10f000 ffffffff f0f0f0f0     ................
+   d9927:	fffffff0 00000000 0fffff00 0f0f0f0f     ................
+   d9937:	38444438 4a4afc44 027e344a 02060602     8DD8D.JJJ4~.....
+   d9947:	027e027e 41495563 44443863 7e40043c     ~.~.cUIAc8DD<.@~
+   d9957:	06201e20 02027e02 a5e7a599 492a1c99      . ..~........*I
+   d9967:	724c1c2a 304c7201 304d4d4a 48784830     *.Lr.rL0JMM00HxH
+   d9977:	5a62bc30 493e3d46 7e004949 7e010101     0.bZF=>III.~...~
+   d9987:	2a2a2a2a 5f44442a 51404444 4040444a     *****DD_DD@QJD@@
+   d9997:	40514a44 01ff0000 ff80e003 08080000     DJQ@............
+   d99a7:	36086b6b 36243612 0f090f06 18000006     kk.6.6$6........
+   d99b7:	00000018 30001010 0101ff40 01011f00     .......0@.......
+   d99c7:	1d19001e 3c001217 003c3c3c 00000000     .......<<<<.....
 	...
 
-000d9a10 <_ZTV12Adafruit_GFX>:
+000d99d8 <_ZTV12Adafruit_GFX>:
 	...
-   d9a20:	000d5785 000d71c5 000d40a5 000d518d     .W...q...@...Q..
-   d9a30:	000d518f 000d51c1 000d519d 000d51af     .Q...Q...Q...Q..
-   d9a40:	000d50d1 000d518d 000d53b9 000d5333     .P...Q...S..3S..
-   d9a50:	000d51d9 000d5217 000d5251 000d5297     .Q...R..QR...R..
-   d9a60:	000d5335 000d52b3                       5S...R..
+   d99e8:	000d5785 000d71c5 000d40a5 000d518d     .W...q...@...Q..
+   d99f8:	000d518f 000d51c1 000d519d 000d51af     .Q...Q...Q...Q..
+   d9a08:	000d50d1 000d518d 000d53b9 000d5333     .P...Q...S..3S..
+   d9a18:	000d51d9 000d5217 000d5251 000d5297     .Q...R..QR...R..
+   d9a28:	000d5335 000d52b3                       5S...R..
 
-000d9a68 <_ZTV16OledWingAdafruit>:
+000d9a30 <_ZTV16OledWingAdafruit>:
 	...
-   d9a70:	000d5895 000d58b5 000d5785 000d71c5     .X...X...W...q..
-   d9a80:	000d5d69 000d518d 000d518f 000d51c1     i]...Q...Q...Q..
-   d9a90:	000d519d 000d51af 000d50d1 000d518d     .Q...Q...P...Q..
-   d9aa0:	000d53b9 000d5f23 000d64b7 000d6469     .S..#_...d..id..
-   d9ab0:	000d5251 000d5297 000d5335 000d52b3     QR...R..5S...R..
+   d9a38:	000d5895 000d58b5 000d5785 000d71c5     .X...X...W...q..
+   d9a48:	000d5d69 000d518d 000d518f 000d51c1     i]...Q...Q...Q..
+   d9a58:	000d519d 000d51af 000d50d1 000d518d     .Q...Q...P...Q..
+   d9a68:	000d53b9 000d5f23 000d64b7 000d6469     .S..#_...d..id..
+   d9a78:	000d5251 000d5297 000d5335 000d52b3     QR...R..5S...R..
 
-000d9ac0 <_ZTVN8particle11SPISettingsE>:
+000d9a88 <_ZTVN8particle11SPISettingsE>:
 	...
-   d9ac8:	000d507d 000d5051 000d5053              }P..QP..SP..
+   d9a90:	000d507d 000d5051 000d5053              }P..QP..SP..
 
-000d9ad4 <_ZL12splash1_data>:
-   d9ad4:	00000000 00800100 00000000 00000000     ................
-   d9ae4:	00008003 00000000 07000000 000000c0     ................
-   d9af4:	00000000 c0070000 00000000 00000000     ................
-   d9b04:	00c00f00 00000000 00000000 0000e01f     ................
-   d9b14:	00000000 1f000000 000000e0 00000000     ................
-   d9b24:	e03f0000 00000000 00000000 00f03f00     ..?..........?..
+000d9a9c <_ZL12splash1_data>:
+   d9a9c:	00000000 00800100 00000000 00000000     ................
+   d9aac:	00008003 00000000 07000000 000000c0     ................
+   d9abc:	00000000 c0070000 00000000 00000000     ................
+   d9acc:	00c00f00 00000000 00000000 0000e01f     ................
+   d9adc:	00000000 1f000000 000000e0 00000000     ................
+   d9aec:	e03f0000 00000000 00000000 00f03f00     ..?..........?..
 	...
-   d9b3c:	0000f07f 00000000 7ff81f00 000000f0     ................
-   d9b4c:	00000000 f07ffe3f 00000000 3f000000     ....?..........?
-   d9b5c:	00f07fff 00000000 ff1f0000 0000e0fb     ................
-   d9b6c:	00000000 f9ff0f00 0000c0ff 00000000     ................
-   d9b7c:	fff9ff0f 000000f8 07000000 fffff1ff     ................
-   d9b8c:	00000000 fc030000 80ffff73 00000000     ........s.......
-   d9b9c:	3ffe0100 0080ffff 00000000 0f1eff00     ...?............
-   d9bac:	000000ff 00000000 fc1ffe7f 00000000     ................
-   d9bbc:	3f000000 00f8ffff 00000000 df0f0000     ...?............
-   d9bcc:	0000e0ff 00000000 ff191f00 000000c0     ................
-   d9bdc:	00000000 00ff3c3f 00000000 7e000000     ....?<.........~
-   d9bec:	0000f87c 00000000 fe7f0000 0000007c     |...........|...
-   d9bfc:	00000000 fcffff00 00000000 00000000     ................
-   d9c0c:	00feffff 00000000 ff000000 0000feff     ................
-   d9c1c:	00000000 efff0100 000000fe 00000000     ................
-   d9c2c:	fecfff01 00000000 03000000 00fe07ff     ................
-   d9c3c:	00000000 fc030000 0000fe07 00000000     ................
-   d9c4c:	03f00300 000000fe 00000000 fe008001     ................
+   d9b04:	0000f07f 00000000 7ff81f00 000000f0     ................
+   d9b14:	00000000 f07ffe3f 00000000 3f000000     ....?..........?
+   d9b24:	00f07fff 00000000 ff1f0000 0000e0fb     ................
+   d9b34:	00000000 f9ff0f00 0000c0ff 00000000     ................
+   d9b44:	fff9ff0f 000000f8 07000000 fffff1ff     ................
+   d9b54:	00000000 fc030000 80ffff73 00000000     ........s.......
+   d9b64:	3ffe0100 0080ffff 00000000 0f1eff00     ...?............
+   d9b74:	000000ff 00000000 fc1ffe7f 00000000     ................
+   d9b84:	3f000000 00f8ffff 00000000 df0f0000     ...?............
+   d9b94:	0000e0ff 00000000 ff191f00 000000c0     ................
+   d9ba4:	00000000 00ff3c3f 00000000 7e000000     ....?<.........~
+   d9bb4:	0000f87c 00000000 fe7f0000 0000007c     |...........|...
+   d9bc4:	00000000 fcffff00 00000000 00000000     ................
+   d9bd4:	00feffff 00000000 ff000000 0000feff     ................
+   d9be4:	00000000 efff0100 000000fe 00000000     ................
+   d9bf4:	fecfff01 00000000 03000000 00fe07ff     ................
+   d9c04:	00000000 fc030000 0000fe07 00000000     ................
+   d9c14:	03f00300 000000fe 00000000 fe008001     ................
 	...
-   d9c64:	007e0000 00000000 00000000 00003e00     ..~..........>..
+   d9c2c:	007e0000 00000000 00000000 00003e00     ..~..........>..
 	...
-   d9c7c:	0000000c 07000000 00fc0080 00c00300     ................
-   d9c8c:	80070000 0000fc01 0000c003 01800700     ................
-   d9c9c:	030000fc 000000c0 e0018007 1e000000     ................
-   d9cac:	07000000 00e00180 001e0000 9ff7e37f     ................
-   d9cbc:	78e7fdf9 ffc0df7b fdbffff7 7b78fffd     ...x{.........x{
-   d9ccc:	f7ffc0df fdfdbfff df7b78ff 87f7f0c0     .........x{.....
-   d9cdc:	ffe13dbc 00de7b78 bc87f7f0 78f0e13d     .=..x{......=..x
-   d9cec:	0000de7b 3d8087f7 7b78e0e1 f77f00de     {......=..x{....
-   d9cfc:	e1fd9f87 de7b78e0 87f7ff00 e0e1fdbf     .....x{.........
-   d9d0c:	00de7b78 bc87f7f0 78e0e13d f000de7b     x{......=..x{...
-   d9d1c:	3dbc87f7 7b78e0e1 f7f000de e13dbc87     ...=..x{......=.
-   d9d2c:	de7b78e0 fff7ff00 e0e1fdbf c0dffb7f     .x{.............
-   d9d3c:	bffff7ff 7fe0e1fd 7cc0dffb 3d9ff3f3     ...........|...=
-   d9d4c:	7b3ee0e1 0000c0cf 00000000 00000000     ..>{............
-   d9d5c:	ffffff00 ffffffff c0ffffff ffffffff     ................
-   d9d6c:	11db68fd ffc0311a fdffffff 6afb5a2b     .h...1......+Z.j
-   d9d7c:	ffffc0ef 4bfdffff 331a3b5b ffffffc0     .......K[;.3....
-   d9d8c:	5b6bfdff c0fd6adb                       ..k[.j..
+   d9c44:	0000000c 07000000 00fc0080 00c00300     ................
+   d9c54:	80070000 0000fc01 0000c003 01800700     ................
+   d9c64:	030000fc 000000c0 e0018007 1e000000     ................
+   d9c74:	07000000 00e00180 001e0000 9ff7e37f     ................
+   d9c84:	78e7fdf9 ffc0df7b fdbffff7 7b78fffd     ...x{.........x{
+   d9c94:	f7ffc0df fdfdbfff df7b78ff 87f7f0c0     .........x{.....
+   d9ca4:	ffe13dbc 00de7b78 bc87f7f0 78f0e13d     .=..x{......=..x
+   d9cb4:	0000de7b 3d8087f7 7b78e0e1 f77f00de     {......=..x{....
+   d9cc4:	e1fd9f87 de7b78e0 87f7ff00 e0e1fdbf     .....x{.........
+   d9cd4:	00de7b78 bc87f7f0 78e0e13d f000de7b     x{......=..x{...
+   d9ce4:	3dbc87f7 7b78e0e1 f7f000de e13dbc87     ...=..x{......=.
+   d9cf4:	de7b78e0 fff7ff00 e0e1fdbf c0dffb7f     .x{.............
+   d9d04:	bffff7ff 7fe0e1fd 7cc0dffb 3d9ff3f3     ...........|...=
+   d9d14:	7b3ee0e1 0000c0cf 00000000 00000000     ..>{............
+   d9d24:	ffffff00 ffffffff c0ffffff ffffffff     ................
+   d9d34:	11db68fd ffc0311a fdffffff 6afb5a2b     .h...1......+Z.j
+   d9d44:	ffffc0ef 4bfdffff 331a3b5b ffffffc0     .......K[;.3....
+   d9d54:	5b6bfdff c0fd6adb                       ..k[.j..
 
-000d9d94 <_ZL12splash2_data>:
-   d9d94:	00600000 00000000 00000000 00000000     ..`.............
-   d9da4:	0000e000 00000000 00000000 01000000     ................
-   d9db4:	000000e0 00000000 00000000 f0010000     ................
+000d9d5c <_ZL12splash2_data>:
+   d9d5c:	00600000 00000000 00000000 00000000     ..`.............
+   d9d6c:	0000e000 00000000 00000000 01000000     ................
+   d9d7c:	000000e0 00000000 00000000 f0010000     ................
 	...
-   d9dd0:	00f00300 00000000 00000000 00000000     ................
-   d9de0:	0000f007 00000000 00000000 07000000     ................
-   d9df0:	000000f8 00000000 00000000 f80f0000     ................
-   d9e00:	03000000 007e00c0 00e00100 00f80f7f     ......~.........
-   d9e10:	c0030000 0000fe00 ff00e001 0000f8ef     ................
-   d9e20:	00c00300 010000fe ffff00e0 000000f8     ................
-   d9e30:	f000c003 0f000000 7ffe7f00 030000c0     ................
-   d9e40:	00f000c0 000f0000 f87ffe3f cffbf13f     ........?...?...
-   d9e50:	bcf3fefc 1fe0ef3d 7fff7ffe fedffffb     ....=...........
-   d9e60:	3dbcfffe c61fe0ef fb7fffff fefedfff     ...=............
-   d9e70:	ef3dbcff c7e30fe0 c37b78fe fff01ede     ..=......x{.....
-   d9e80:	00ef3dbc fc87ff07 dec37b78 3cf8f01e     .=......x{.....<
-   d9e90:	0100ef3d 00f0ffff 1ec0c37b 3d3cf0f0     =.......{.....<=
-   d9ea0:	f30100ef fb3fe07f f0fecfc3 ef3d3cf0     ......?......<=.
-   d9eb0:	3fe30300 c3fb7f80 f0f0fedf 00ef3d3c     ...?........<=..
-   d9ec0:	003ce707 dec37b78 3cf0f01e 0700ef3d     ..<.x{.....<=...
-   d9ed0:	7800beff 1edec37b 3d3cf0f0 ff0700ef     ...x{.....<=....
-   d9ee0:	7b7800fe f01edec3 ef3d3cf0 feff0f00     ..x{.....<=.....
-   d9ef0:	fffb7f00 f0f0fedf e0effd3f 00ffff0f     ........?.......
-   d9f00:	dffffb7f 3ff0f0fe 0fe0effd 3e00fff9     .......?.......>
-   d9f10:	9ecff979 3d1ff0f0 f11fe0e7 000000ff     y......=........
+   d9d98:	00f00300 00000000 00000000 00000000     ................
+   d9da8:	0000f007 00000000 00000000 07000000     ................
+   d9db8:	000000f8 00000000 00000000 f80f0000     ................
+   d9dc8:	03000000 007e00c0 00e00100 00f80f7f     ......~.........
+   d9dd8:	c0030000 0000fe00 ff00e001 0000f8ef     ................
+   d9de8:	00c00300 010000fe ffff00e0 000000f8     ................
+   d9df8:	f000c003 0f000000 7ffe7f00 030000c0     ................
+   d9e08:	00f000c0 000f0000 f87ffe3f cffbf13f     ........?...?...
+   d9e18:	bcf3fefc 1fe0ef3d 7fff7ffe fedffffb     ....=...........
+   d9e28:	3dbcfffe c61fe0ef fb7fffff fefedfff     ...=............
+   d9e38:	ef3dbcff c7e30fe0 c37b78fe fff01ede     ..=......x{.....
+   d9e48:	00ef3dbc fc87ff07 dec37b78 3cf8f01e     .=......x{.....<
+   d9e58:	0100ef3d 00f0ffff 1ec0c37b 3d3cf0f0     =.......{.....<=
+   d9e68:	f30100ef fb3fe07f f0fecfc3 ef3d3cf0     ......?......<=.
+   d9e78:	3fe30300 c3fb7f80 f0f0fedf 00ef3d3c     ...?........<=..
+   d9e88:	003ce707 dec37b78 3cf0f01e 0700ef3d     ..<.x{.....<=...
+   d9e98:	7800beff 1edec37b 3d3cf0f0 ff0700ef     ...x{.....<=....
+   d9ea8:	7b7800fe f01edec3 ef3d3cf0 feff0f00     ..x{.....<=.....
+   d9eb8:	fffb7f00 f0f0fedf e0effd3f 00ffff0f     ........?.......
+   d9ec8:	dffffb7f 3ff0f0fe 0fe0effd 3e00fff9     .......?.......>
+   d9ed8:	9ecff979 3d1ff0f0 f11fe0e7 000000ff     y......=........
 	...
-   d9f28:	ff801f00 ffff7f00 ffffffff e0ffffff     ................
-   d9f38:	007f001c ffffff7f 886db4fe 00e0188d     ..........m.....
-   d9f48:	7f001f00 feffffff b57dad95 0000e077     ..........}.w...
-   d9f58:	ff7f000f a5feffff 198d9dad 060000e0     ................
-   d9f68:	ffff7f00 adb5feff e07eb5ed              ..........~.
+   d9ef0:	ff801f00 ffff7f00 ffffffff e0ffffff     ................
+   d9f00:	007f001c ffffff7f 886db4fe 00e0188d     ..........m.....
+   d9f10:	7f001f00 feffffff b57dad95 0000e077     ..........}.w...
+   d9f20:	ff7f000f a5feffff 198d9dad 060000e0     ................
+   d9f30:	ffff7f00 adb5feff e07eb5ed              ..........~.
 
-000d9f74 <_ZTV16Adafruit_SSD1306>:
+000d9f3c <_ZTV16Adafruit_SSD1306>:
 	...
-   d9f7c:	000d5d3d 000d5d55 000d5785 000d71c5     =]..U]...W...q..
-   d9f8c:	000d5d69 000d518d 000d518f 000d51c1     i]...Q...Q...Q..
-   d9f9c:	000d519d 000d51af 000d50d1 000d518d     .Q...Q...P...Q..
-   d9fac:	000d53b9 000d5f23 000d64b7 000d6469     .S..#_...d..id..
-   d9fbc:	000d5251 000d5297 000d5335 000d52b3     QR...R..5S...R..
+   d9f44:	000d5d3d 000d5d55 000d5785 000d71c5     =]..U]...W...q..
+   d9f54:	000d5d69 000d518d 000d518f 000d51c1     i]...Q...Q...Q..
+   d9f64:	000d519d 000d51af 000d50d1 000d518d     .Q...Q...P...Q..
+   d9f74:	000d53b9 000d5f23 000d64b7 000d6469     .S..#_...d..id..
+   d9f84:	000d5251 000d5297 000d5335 000d52b3     QR...R..5S...R..
 
-000d9fcc <_ZZN16Adafruit_SSD130621drawFastVLineInternalEssstE7premask>:
-   d9fcc:	e0c08000 fefcf8f0                       ........
+000d9f94 <_ZZN16Adafruit_SSD130621drawFastVLineInternalEssstE7premask>:
+   d9f94:	e0c08000 fefcf8f0                       ........
 
-000d9fd4 <_ZZN16Adafruit_SSD130621drawFastVLineInternalEssstE8postmask>:
-   d9fd4:	07030100 7f3f1f0f                       ......?.
+000d9f9c <_ZZN16Adafruit_SSD130621drawFastVLineInternalEssstE8postmask>:
+   d9f9c:	07030100 7f3f1f0f                       ......?.
 
-000d9fdc <_ZZN16Adafruit_SSD13065beginEhhbbE5init1>:
-   d9fdc:	a880d5ae                                ....
+000d9fa4 <_ZZN16Adafruit_SSD13065beginEhhbbE5init1>:
+   d9fa4:	a880d5ae                                ....
 
-000d9fe0 <_ZZN16Adafruit_SSD13065beginEhhbbE5init2>:
-   d9fe0:	8d4000d3                                ..@.
+000d9fa8 <_ZZN16Adafruit_SSD13065beginEhhbbE5init2>:
+   d9fa8:	8d4000d3                                ..@.
 
-000d9fe4 <_ZZN16Adafruit_SSD13065beginEhhbbE5init3>:
-   d9fe4:	c8a10020                                 ...
+000d9fac <_ZZN16Adafruit_SSD13065beginEhhbbE5init3>:
+   d9fac:	c8a10020                                 ...
 
-000d9fe8 <_ZZN16Adafruit_SSD13065beginEhhbbE5init5>:
-   d9fe8:	a6a440db                                 .@....
+000d9fb0 <_ZZN16Adafruit_SSD13065beginEhhbbE5init5>:
+   d9fb0:	a6a440db                                 .@....
 
-000d9fee <_ZZN16Adafruit_SSD13065beginEhhbbE6init4a>:
-   d9fee:	8f8102da                                ....
+000d9fb6 <_ZZN16Adafruit_SSD13065beginEhhbbE6init4a>:
+   d9fb6:	8f8102da                                ....
 
-000d9ff2 <_ZZN16Adafruit_SSD13065beginEhhbbE6init4b>:
-   d9ff2:	                                         ...
+000d9fba <_ZZN16Adafruit_SSD13065beginEhhbbE6init4b>:
+   d9fba:	                                         ...
 
-000d9ff5 <_ZZN16Adafruit_SSD13065beginEhhbbE6init4c>:
-   d9ff5:	                                         ...
+000d9fbd <_ZZN16Adafruit_SSD13065beginEhhbbE6init4c>:
+   d9fbd:	                                         ...
 
-000d9ff8 <_ZZN16Adafruit_SSD13067displayEvE6dlist1>:
-   d9ff8:	21ff0022 00000000                       "..!....
+000d9fc0 <_ZZN16Adafruit_SSD13067displayEvE6dlist1>:
+   d9fc0:	21ff0022 00000000                       "..!....
 
-000da000 <_ZL22BlynkReadHandlerVector>:
-   da000:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da010:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da020:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da030:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da040:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da050:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da060:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da070:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da080:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da090:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da0a0:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da0b0:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da0c0:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da0d0:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da0e0:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da0f0:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da100:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da110:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da120:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da130:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da140:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da150:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da160:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da170:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da180:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da190:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da1a0:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da1b0:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da1c0:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da1d0:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da1e0:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
-   da1f0:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+000d9fc8 <_ZL22BlynkReadHandlerVector>:
+   d9fc8:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   d9fd8:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   d9fe8:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   d9ff8:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da008:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da018:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da028:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da038:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da048:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da058:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da068:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da078:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da088:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da098:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da0a8:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da0b8:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da0c8:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da0d8:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da0e8:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da0f8:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da108:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da118:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da128:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da138:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da148:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da158:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da168:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da178:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da188:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da198:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da1a8:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
+   da1b8:	000d6641 000d6641 000d6641 000d6641     Af..Af..Af..Af..
 
-000da200 <_ZL23BlynkWriteHandlerVector>:
-   da200:	000d6643 000d41f5 000d6643 000d6643     Cf...A..Cf..Cf..
-   da210:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da220:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da230:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da240:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da250:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da260:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da270:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da280:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da290:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da2a0:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da2b0:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da2c0:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da2d0:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da2e0:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da2f0:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da300:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da310:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da320:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da330:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da340:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da350:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da360:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da370:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da380:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da390:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da3a0:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da3b0:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da3c0:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da3d0:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da3e0:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
-   da3f0:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+000da1c8 <_ZL23BlynkWriteHandlerVector>:
+   da1c8:	000d6643 000d41f5 000d6643 000d6643     Cf...A..Cf..Cf..
+   da1d8:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da1e8:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da1f8:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da208:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da218:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da228:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da238:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da248:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da258:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da268:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da278:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da288:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da298:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da2a8:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da2b8:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da2c8:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da2d8:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da2e8:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da2f8:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da308:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da318:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da328:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da338:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da348:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da358:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da368:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da378:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da388:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da398:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da3a8:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
+   da3b8:	000d6643 000d6643 000d6643 000d6643     Cf..Cf..Cf..Cf..
 
-000da400 <_ZTVN5spark13EthernetClassE>:
+000da3c8 <_ZTVN5spark13EthernetClassE>:
 	...
-   da408:	000d6c67 000d6c5d 000d6c53 000d6c49     gl..]l..Sl..Il..
-   da418:	000d6c3d 000d6c31 000d7f65 000d7f6d     =l..1l..e...m...
-   da428:	000d6c25 000d6c1d 000d6c13 000d6c09     %l...l...l...l..
-   da438:	000d7f9d                                ....
+   da3d0:	000d6c67 000d6c5d 000d6c53 000d6c49     gl..]l..Sl..Il..
+   da3e0:	000d6c3d 000d6c31 000d7f65 000d7f6d     =l..1l..e...m...
+   da3f0:	000d6c25 000d6c1d 000d6c13 000d6c09     %l...l...l...l..
+   da400:	000d7f9d                                ....
 
-000da43c <_ZN12_GLOBAL__N_1L14clock_divisorsE>:
-   da43c:	18100800 38302820                       .... (08
+000da404 <_ZN12_GLOBAL__N_1L14clock_divisorsE>:
+   da404:	18100800 38302820                       .... (08
 
-000da444 <_ZZNSt19_Sp_make_shared_tag5_S_tiEvE5__tag>:
+000da40c <_ZZNSt19_Sp_make_shared_tag5_S_tiEvE5__tag>:
 	...
-   da44c:	00707061 252d5925 64252d6d 3a482554     app.%Y-%m-%dT%H:
-   da45c:	253a4d25 007a2553 74637361 00656d69     %M:%S%z.asctime.
+   da414:	00707061 252d5925 64252d6d 3a482554     app.%Y-%m-%dT%H:
+   da424:	253a4d25 007a2553 74637361 00656d69     %M:%S%z.asctime.
 
-000da46c <_ZTV9IPAddress>:
+000da434 <_ZTV9IPAddress>:
 	...
-   da474:	000d74cd 000d74bd 000d74bf              .t...t...t..
+   da43c:	000d74cd 000d74bd 000d74bf              .t...t...t..
 
-000da480 <_ZTV9USBSerial>:
+000da448 <_ZTV9USBSerial>:
 	...
-   da488:	000d75f1 000d7659 000d762f 000d71c5     .u..Yv../v...q..
-   da498:	000d7621 000d75f3 000d7603 000d7653     !v...u...v..Sv..
-   da4a8:	000d7613 000d75ed                       .v...u..
+   da450:	000d75f1 000d7659 000d762f 000d71c5     .u..Yv../v...q..
+   da460:	000d7621 000d75f3 000d7603 000d7653     !v...u...v..Sv..
+   da470:	000d7613 000d75ed                       .v...u..
 
-000da4b0 <_ZTV11USARTSerial>:
+000da478 <_ZTV11USARTSerial>:
 	...
-   da4b8:	000d76f5 000d7761 000d7739 000d71c5     .v..aw..9w...q..
-   da4c8:	000d7709 000d7725 000d7717 000d7733     .w..%w...w..3w..
-   da4d8:	000d76f7 000d76fb                       .v...v..
+   da480:	000d76f5 000d7761 000d7739 000d71c5     .v..aw..9w...q..
+   da490:	000d7709 000d7725 000d7717 000d7733     .w..%w...w..3w..
+   da4a0:	000d76f7 000d76fb                       .v...v..
 
-000da4e0 <_ZTV7TwoWire>:
+000da4a8 <_ZTV7TwoWire>:
 	...
-   da4e8:	000d77f1 000d783b 000d7813 000d77f3     .w..;x...x...w..
-   da4f8:	000d781b 000d7823 000d782b 000d7833     .x..#x..+x..3x..
-   da508:	69726977 7200676e 20766365 6f727265     wiring.recv erro
-   da518:	203d2072 00006425                       r = %d..
+   da4b0:	000d77f1 000d783b 000d7813 000d77f3     .w..;x...x...w..
+   da4c0:	000d781b 000d7823 000d782b 000d7833     .x..#x..+x..3x..
+   da4d0:	69726977 7200676e 20766365 6f727265     wiring.recv erro
+   da4e0:	203d2072 00006425                       r = %d..
 
-000da520 <_ZTVSt23_Sp_counted_ptr_inplaceIN9TCPClient4DataESaIS1_ELN9__gnu_cxx12_Lock_policyE0EE>:
+000da4e8 <_ZTVSt23_Sp_counted_ptr_inplaceIN9TCPClient4DataESaIS1_ELN9__gnu_cxx12_Lock_policyE0EE>:
 	...
-   da528:	000d7977 000d7999 000d7db3 000d79a7     wy...y...}...y..
-   da538:	000d7979                                yy..
+   da4f0:	000d7977 000d7999 000d7db3 000d79a7     wy...y...}...y..
+   da500:	000d7979                                yy..
 
-000da53c <_ZTV9TCPClient>:
+000da504 <_ZTV9TCPClient>:
 	...
-   da544:	000d7a25 000d7a59 000d78f5 000d790f     %z..Yz...x...y..
-   da554:	000d7c49 000d7abb 000d7a8d 000d7939     I|...z...z..9y..
-   da564:	000d7b53 000d7db9 000d7aef 000d7cfd     S{...}...z...|..
-   da574:	000d793b 000d796d 000d7921 000d79ab     ;y..my..!y...y..
-   da584:	000d7a6d                                mz..
+   da50c:	000d7a25 000d7a59 000d78f5 000d790f     %z..Yz...x...y..
+   da51c:	000d7c49 000d7abb 000d7a8d 000d7939     I|...z...z..9y..
+   da52c:	000d7b53 000d7db9 000d7aef 000d7cfd     S{...}...z...|..
+   da53c:	000d793b 000d796d 000d7921 000d79ab     ;y..my..!y...y..
+   da54c:	000d7a6d                                mz..
 
-000da588 <_ZTVN5spark9WiFiClassE>:
+000da550 <_ZTVN5spark9WiFiClassE>:
 	...
-   da590:	000d7f07 000d7efd 000d7ef3 000d7eb5     .....~...~...~..
-   da5a0:	000d7339 000d7ee7 000d7f65 000d7f6d     9s...~..e...m...
-   da5b0:	000d7edb 000d7ed3 000d7ec9 000d7ebf     .~...~...~...~..
-   da5c0:	000d7f9d                                ....
+   da558:	000d7f07 000d7efd 000d7ef3 000d7eb5     .....~...~...~..
+   da568:	000d7339 000d7ee7 000d7f65 000d7f6d     9s...~..e...m...
+   da578:	000d7edb 000d7ed3 000d7ec9 000d7ebf     .~...~...~...~..
+   da588:	000d7f9d                                ....
 
-000da5c4 <_ZTVN5spark12NetworkClassE>:
+000da58c <_ZTVN5spark12NetworkClassE>:
 	...
-   da5cc:	000d7f25 000d7f2f 000d7f39 000d7f43     %.../...9...C...
-   da5dc:	000d7f4d 000d7f59 000d7f65 000d7f6d     M...Y...e...m...
-   da5ec:	000d7f75 000d7f81 000d7f89 000d7f93     u...............
-   da5fc:	000d7f9d                                ....
+   da594:	000d7f25 000d7f2f 000d7f39 000d7f43     %.../...9...C...
+   da5a4:	000d7f4d 000d7f59 000d7f65 000d7f6d     M...Y...e...m...
+   da5b4:	000d7f75 000d7f81 000d7f89 000d7f93     u...............
+   da5c4:	000d7f9d                                ....
 
-000da600 <_ZSt7nothrow>:
-	...
-
-000da601 <_ZTSSt19_Sp_make_shared_tag>:
-   da601:	39317453 5f70535f 656b616d 6168735f     St19_Sp_make_sha
-   da611:	5f646572 00676174                        red_tag....
-
-000da61c <_ZTISt19_Sp_make_shared_tag>:
-   da61c:	000da65c 000da601                       \.......
-
-000da624 <_ZTIN10__cxxabiv117__class_type_infoE>:
-   da624:	000da6bc 000da630 000da6e0              ....0.......
-
-000da630 <_ZTSN10__cxxabiv117__class_type_infoE>:
-   da630:	5f30314e 7878635f 76696261 5f373131     N10__cxxabiv117_
-   da640:	616c635f 745f7373 5f657079 6f666e69     _class_type_info
-   da650:	00000045                                E...
-
-000da654 <_ZTVN10__cxxabiv117__class_type_infoE>:
-   da654:	00000000 000da624 000d82e1 000d82f5     ....$...........
-   da664:	000d8489 000d8489 000d835f 000d82a1     ........_.......
-   da674:	000d8347 000d8309 000d82d5              G...........
-
-000da680 <_ZTIN10__cxxabiv120__si_class_type_infoE>:
-   da680:	000da6bc 000da68c 000da624              ........$...
-
-000da68c <_ZTSN10__cxxabiv120__si_class_type_infoE>:
-   da68c:	5f30314e 7878635f 76696261 5f303231     N10__cxxabiv120_
-   da69c:	5f69735f 73616c63 79745f73 695f6570     _si_class_type_i
-   da6ac:	456f666e 00000000                       nfoE....
-
-000da6b4 <_ZTVN10__cxxabiv120__si_class_type_infoE>:
-   da6b4:	00000000 000da680 000d8389 000d839d     ................
-   da6c4:	000d8489 000d8489 000d835f 000d82a1     ........_.......
-   da6d4:	000d845d 000d83e9 000d83b1              ]...........
-
-000da6e0 <_ZTISt9type_info>:
-   da6e0:	000da65c 000da6e8                       \.......
-
-000da6e8 <_ZTSSt9type_info>:
-   da6e8:	74397453 5f657079 6f666e69               St9type_info.
-
-000da6f5 <_ctype_>:
-   da6f5:	20202000 20202020 28282020 20282828     .         ((((( 
-   da705:	20202020 20202020 20202020 20202020                     
-   da715:	10108820 10101010 10101010 10101010      ...............
-   da725:	04040410 04040404 10040404 10101010     ................
-   da735:	41411010 41414141 01010101 01010101     ..AAAAAA........
-   da745:	01010101 01010101 01010101 10101010     ................
-   da755:	42421010 42424242 02020202 02020202     ..BBBBBB........
-   da765:	02020202 02020202 02020202 10101010     ................
-   da775:	00000020 00000000 00000000 00000000      ...............
+000da5c8 <_ZSt7nothrow>:
 	...
 
-000da7f6 <link_const_variable_data_end>:
+000da5c9 <_ZTSSt19_Sp_make_shared_tag>:
+   da5c9:	39317453 5f70535f 656b616d 6168735f     St19_Sp_make_sha
+   da5d9:	5f646572 00676174                        red_tag....
+
+000da5e4 <_ZTISt19_Sp_make_shared_tag>:
+   da5e4:	000da624 000da5c9                       $.......
+
+000da5ec <_ZTIN10__cxxabiv117__class_type_infoE>:
+   da5ec:	000da684 000da5f8 000da6a8              ............
+
+000da5f8 <_ZTSN10__cxxabiv117__class_type_infoE>:
+   da5f8:	5f30314e 7878635f 76696261 5f373131     N10__cxxabiv117_
+   da608:	616c635f 745f7373 5f657079 6f666e69     _class_type_info
+   da618:	00000045                                E...
+
+000da61c <_ZTVN10__cxxabiv117__class_type_infoE>:
+   da61c:	00000000 000da5ec 000d82e1 000d82f5     ................
+   da62c:	000d8489 000d8489 000d835f 000d82a1     ........_.......
+   da63c:	000d8347 000d8309 000d82d5              G...........
+
+000da648 <_ZTIN10__cxxabiv120__si_class_type_infoE>:
+   da648:	000da684 000da654 000da5ec              ....T.......
+
+000da654 <_ZTSN10__cxxabiv120__si_class_type_infoE>:
+   da654:	5f30314e 7878635f 76696261 5f303231     N10__cxxabiv120_
+   da664:	5f69735f 73616c63 79745f73 695f6570     _si_class_type_i
+   da674:	456f666e 00000000                       nfoE....
+
+000da67c <_ZTVN10__cxxabiv120__si_class_type_infoE>:
+   da67c:	00000000 000da648 000d8389 000d839d     ....H...........
+   da68c:	000d8489 000d8489 000d835f 000d82a1     ........_.......
+   da69c:	000d845d 000d83e9 000d83b1              ]...........
+
+000da6a8 <_ZTISt9type_info>:
+   da6a8:	000da624 000da6b0                       $.......
+
+000da6b0 <_ZTSSt9type_info>:
+   da6b0:	74397453 5f657079 6f666e69               St9type_info.
+
+000da6bd <_ctype_>:
+   da6bd:	20202000 20202020 28282020 20282828     .         ((((( 
+   da6cd:	20202020 20202020 20202020 20202020                     
+   da6dd:	10108820 10101010 10101010 10101010      ...............
+   da6ed:	04040410 04040404 10040404 10101010     ................
+   da6fd:	41411010 41414141 01010101 01010101     ..AAAAAA........
+   da70d:	01010101 01010101 01010101 10101010     ................
+   da71d:	42421010 42424242 02020202 02020202     ..BBBBBB........
+   da72d:	02020202 02020202 02020202 10101010     ................
+   da73d:	00000020 00000000 00000000 00000000      ...............
 	...
 
-000da7f8 <link_constructors_location>:
-   da7f8:	000d4fb9 	.word	0x000d4fb9
-   da7fc:	000d6c71 	.word	0x000d6c71
-   da800:	000d6e01 	.word	0x000d6e01
-   da804:	000d719d 	.word	0x000d719d
-   da808:	000d7345 	.word	0x000d7345
-   da80c:	000d7355 	.word	0x000d7355
-   da810:	000d737d 	.word	0x000d737d
-   da814:	000d7f11 	.word	0x000d7f11
-   da818:	000d807d 	.word	0x000d807d
+000da7be <link_const_variable_data_end>:
+	...
 
-000da81c <link_constructors_end>:
-   da81c:	00000000 	.word	0x00000000
+000da7c0 <link_constructors_location>:
+   da7c0:	000d4fd9 	.word	0x000d4fd9
+   da7c4:	000d6c71 	.word	0x000d6c71
+   da7c8:	000d6e01 	.word	0x000d6e01
+   da7cc:	000d719d 	.word	0x000d719d
+   da7d0:	000d7345 	.word	0x000d7345
+   da7d4:	000d7355 	.word	0x000d7355
+   da7d8:	000d737d 	.word	0x000d737d
+   da7dc:	000d7f11 	.word	0x000d7f11
+   da7e0:	000d807d 	.word	0x000d807d
+
+000da7e4 <link_constructors_end>:
+	...
